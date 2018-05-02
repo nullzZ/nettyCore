@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<script>
+    var loginDatas = {
+        cmd:1001,
+        userId:66666,
+    };
+    var workDatas = {
+        cmd:2002,
+        token:"Jd+WTEnAGDNZOt0MJz8NpA==",
+        workId:1,
+    };
+    var workInfo = {
+        cmd:2001,
+        token:"Jd+WTEnAGDNZOt0MJz8NpA=="
+    };
+    var workMark = {
+        cmd:2003,
+        token:"Jd+WTEnAGDNZOt0MJz8NpA=="
+    };
+    var workFinish = {
+        cmd:2004,
+        token:"Jd+WTEnAGDNZOt0MJz8NpA==",
+        workId:2
+    };
+    // var url = "http://game.z1.dwtv.tv";
+    var url = "http://localhost:20000";
+    var workurl = "http://localhost:21000";
+    $(document).ready(function(){
+        $("#but1").click(function(){
+            $.post(url,JSON.stringify(loginDatas),
+                function(data,status){
+                    console.log("数据：" + data.cmd + "\n状态：" + status);
+                    //console.log(data)
+                });
+        });
+        $("#but2").click(function(){
+            $.post(workurl,JSON.stringify(workDatas),
+                function(data,status){
+                    console.log("数据：" + data.responseText + "\n状态：" + status);
+                    //console.log(data)
+                },'json');
+        });
+        $("#but3").click(function(){
+            $.post(workurl,JSON.stringify(workInfo),
+                function(data,status){
+                    console.log("数据：" + data.responseText + "\n状态：" + status);
+                    //console.log(data)
+                },'json');
+        });
+         $("#but4").click(function(){
+        $.post(workurl,JSON.stringify(workMark),
+                function(data,status){
+                    console.log("数据：" + data.responseText + "\n状态：" + status);
+                    //console.log(data)
+                },'json');
+        });
+          $("#but5").click(function(){
+        $.post(workurl,JSON.stringify(workFinish),
+                function(data,status){
+                    console.log("数据：" + data.responseText + "\n状态：" + status);
+                    //console.log(data)
+                },'json');
+        });
+    });
+</script>
+<body>
+
+<button id="but1">登陆</button>
+<button id="but3">工作列表</button>
+<button id="but2">打工</button>
+<button id="but5">完成打工</button>
+<button id="but4">市场</button>
+</body>
+</html>

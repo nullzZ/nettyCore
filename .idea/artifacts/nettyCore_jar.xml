@@ -1,0 +1,36 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="nettyCore:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/nettyCore_jar</output-path>
+    <root id="archive" name="nettyCore.jar">
+      <element id="module-output" name="nettyCore" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-core/1.0.8/protostuff-core-1.0.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.0.0/protobuf-java-3.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.47/fastjson-1.2.47.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/objenesis/objenesis/2.1/objenesis-2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.4.Final/netty-all-4.1.4.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-configuration/commons-configuration/1.10/commons-configuration-1.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-runtime/1.0.8/protostuff-runtime-1.0.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/19.0/guava-19.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-collectionschema/1.0.8/protostuff-collectionschema-1.0.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/dyuproject/protostuff/protostuff-api/1.0.8/protostuff-api-1.0.8.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.47" />
+      <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-api:1.0.8" />
+      <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-collectionschema:1.0.8" />
+      <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-core:1.0.8" />
+      <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-runtime:1.0.8" />
+      <element id="library" level="project" name="Maven: com.google.guava:guava:19.0" />
+      <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.0.0" />
+      <element id="library" level="project" name="Maven: commons-configuration:commons-configuration:1.10" />
+      <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+      <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.1.1" />
+      <element id="library" level="project" name="Maven: io.netty:netty-all:4.1.4.Final" />
+      <element id="library" level="project" name="Maven: junit:junit:3.8.1" />
+      <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.4.2" />
+      <element id="library" level="project" name="Maven: org.objenesis:objenesis:2.1" />
+    </root>
+  </artifact>
+</component>
