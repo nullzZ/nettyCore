@@ -34,7 +34,7 @@ public class MessageUtil {
         DefaultFullHttpResponse res = new DefaultFullHttpResponse(HTTP_1_1, status);
         try {
             if (msg != null) {
-                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg, SerializerFeature.NotWriteDefaultValue));
+                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
                 res.content().writeBytes(buf);
             }
             io.netty.handler.codec.http.HttpUtil.setContentLength(res, res.content().readableBytes());
@@ -64,7 +64,7 @@ public class MessageUtil {
 
         try {
             if (msg != null) {
-                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg, SerializerFeature.NotWriteDefaultValue));
+                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
             }
             DefaultFullHttpResponse res = new DefaultFullHttpResponse(HTTP_1_1, status, buf);
             res.headers().setInt("Content-Length", res.content().readableBytes());
