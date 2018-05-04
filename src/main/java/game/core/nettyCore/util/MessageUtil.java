@@ -1,6 +1,7 @@
 package game.core.nettyCore.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import game.core.nettyCore.model.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -33,7 +34,7 @@ public class MessageUtil {
         DefaultFullHttpResponse res = new DefaultFullHttpResponse(HTTP_1_1, status);
         try {
             if (msg != null) {
-                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
+                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg, SerializerFeature.NotWriteDefaultValue));
                 res.content().writeBytes(buf);
             }
             io.netty.handler.codec.http.HttpUtil.setContentLength(res, res.content().readableBytes());
@@ -63,7 +64,7 @@ public class MessageUtil {
 
         try {
             if (msg != null) {
-                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
+                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg, SerializerFeature.NotWriteDefaultValue));
             }
             DefaultFullHttpResponse res = new DefaultFullHttpResponse(HTTP_1_1, status, buf);
             res.headers().setInt("Content-Length", res.content().readableBytes());
