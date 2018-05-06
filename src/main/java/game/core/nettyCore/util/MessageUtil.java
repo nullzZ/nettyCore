@@ -1,6 +1,7 @@
 package game.core.nettyCore.util;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import game.core.nettyCore.model.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
