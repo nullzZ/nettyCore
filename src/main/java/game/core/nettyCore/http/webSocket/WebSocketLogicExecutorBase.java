@@ -1,9 +1,9 @@
-package game.core.nettyCore.http;
+package game.core.nettyCore.http.webSocket;
 
 import game.core.nettyCore.IExecutorCallBack;
-import game.core.nettyCore.util.MessageUtil;
+import game.core.nettyCore.http.HttpResponse;
+import game.core.nettyCore.http.HttpResponseMessage;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.FullHttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,25 +15,25 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author nullzZ
  */
-public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExecutorBase {
+public class WebSocketLogicExecutorBase implements AbstractWebSocketLogicExecutorBase {
 
-    private static final Logger logger = LoggerFactory.getLogger(HttpMessageLogicExecutorBase.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebSocketLogicExecutorBase.class);
     private ExecutorService es = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1, new ThreadFactory() {
         private AtomicInteger id = new AtomicInteger(0);
 
         @Override
         public Thread newThread(Runnable r) {
-            return new Thread(r, "HttpLogicExecutor" + id.getAndAdd(1));
+            return new Thread(r, "WebSocketLogicExecutor" + id.getAndAdd(1));
         }
     });
     public IExecutorCallBack executorCallBack;
 
-    public HttpMessageLogicExecutorBase(IExecutorCallBack executorCallBack) {
+    public WebSocketLogicExecutorBase(IExecutorCallBack executorCallBack) {
         this.executorCallBack = executorCallBack;
     }
 
     @Override
-    public void execute(IHttpHandler handler, ChannelHandlerContext ctx, FullHttpRequest req, int cmd, String token, Object msg) {
+    public void execute(IWebSocketHandler handler, ChannelHandlerContext ctx, int cmd, Object msg) {
         if (handler != null) {
             es.execute(() -> {
                         try {
@@ -41,7 +41,13 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
                             if (executorCallBack != null) {
                                 executorCallBack.onHandleBefor(ctx, msg);
                             }
-                            Object r = handler.execute(ctx, token, msg);
+                            Object r = null;
+                            if (cmd == 100) {//登陆请求
+
+                            } else {
+                                r = handler.execute(ctx, msg);
+                            }
+
                             if (r == null || r instanceof Void) {
 
                             } else {
@@ -50,7 +56,7 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
                                 res.setCmd(cmd);
                                 res.setRet(rr.getRet());
                                 res.setData(r);
-                                MessageUtil.sendHttpResponse(ctx, req, res);
+//                                MessageUtil.sendHttpResponse(ctx, req, res);
                             }
                             if (executorCallBack != null) {
                                 executorCallBack.onHandleAfer(ctx, msg);

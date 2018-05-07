@@ -11,7 +11,9 @@ import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
+import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.CONTENT_TYPE;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
@@ -53,6 +55,26 @@ public class MessageUtil {
 //            }
         }
     }
+
+    public static void sendWebSocketResponse(ChannelHandlerContext ctx, HttpResponse msg) throws Exception {
+        ByteBuf buf = null;
+        try {
+            if (msg != null) {
+                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
+                ctx.channel().writeAndFlush(
+                        new TextWebSocketFrame(buf));
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
+    //        ctx.channel().write(
+//                new TextWebSocketFrame(request
+//                        + " , 欢迎使用Netty WebSocket服务，现在时刻："
+//                        + new java.util.Date().toString()));
+
 
     public static void sendHttpResponse(ChannelHandlerContext ctx, FullHttpRequest req, Object msg) throws Exception {
         sendHttpResponse(ctx, req, HttpResponseStatus.OK, msg);
