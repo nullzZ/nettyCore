@@ -8,7 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="560fea24-f430-4f39-a5d6-63293d1e37cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/MessageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/MessageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,15 +26,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ClientDefBuilderBase.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/client/ClientDefBuilderBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ClientListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/client/ClientListener.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,17 +74,17 @@
       <file leaf-file-name="HttpMessageLogicExecutorBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="52" column="53" lean-forward="true" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+            <state relative-caret-position="920">
+              <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageUtil.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MessageUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/MessageUtil.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="89">
-              <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -100,7 +92,21 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-828" />
+            <state relative-caret-position="296">
+              <caret line="73" column="21" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="73" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="92">
+                <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+              </first_editor>
+              <second_editor />
+            </state>
           </provider>
         </entry>
       </file>
@@ -135,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/proto/json/JsonProtocol.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/excelUtil/AbstractDataProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/excelUtil/GenerateDataProviderUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/excelUtil/GameUtil.java" />
@@ -163,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpResponseMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpResponse.java" />
         <option value="$PROJECT_DIR$/src/test/java/game/core/nettyCore/TestWebServer.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/HandlerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/bootstrap/HttpCommonServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/bootstrap/HttpServerBootstrap.java" />
@@ -186,6 +190,8 @@
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/client/ClientMessageRecvHandlerBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/IHttpHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/MessageUtil.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -235,7 +241,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1456" />
     <option name="height" value="867" />
@@ -246,8 +252,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -390,7 +394,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -558,19 +564,19 @@
       <workItem from="1525246160714" duration="1031000" />
       <workItem from="1525420734540" duration="735000" />
       <workItem from="1525422294337" duration="1744000" />
+      <workItem from="1525655375411" duration="231000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154305000" />
+    <option name="totallyTimeSpent" value="154536000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.3283582" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -582,7 +588,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32971507" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49932158" visible="true" weight="0.256447" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49932158" visible="true" weight="0.26002866" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" sideWeight="0.5006784" side_tool="true" weight="0.27005732" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -597,6 +603,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.21709634" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.3283582" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -618,13 +625,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/ServerDefBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/ServerDef.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -954,22 +954,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-828" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="52" column="53" lean-forward="true" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+        <state relative-caret-position="920">
+          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/MessageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="89">
-          <caret line="53" column="9" lean-forward="true" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="73" column="21" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="73" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="92">
+            <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

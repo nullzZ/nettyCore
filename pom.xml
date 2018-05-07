@@ -12,10 +12,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<netty.version>4.1.4.Final</netty.version>
-		<log4j.version>1.2.17</log4j.version>
-		<protobuf.version>3.0.0</protobuf.version>
-		<commons-configuration-version>1.10</commons-configuration-version>
 	</properties>
 
 	<dependencies>
@@ -34,17 +30,17 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>${netty.version}</version>
+			<version>4.1.24.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>
-			<version>${protobuf.version}</version>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
-			<version>${commons-configuration-version}</version>
+			<version>1.10</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -61,7 +57,6 @@
 			<artifactId>objenesis</artifactId>
 			<version>2.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.dyuproject.protostuff</groupId>
 			<artifactId>protostuff-core</artifactId>
