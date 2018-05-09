@@ -2,6 +2,8 @@ package game.core.nettyCore.http;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import game.core.nettyCore.http.webSocket.SessionManager;
+import game.core.nettyCore.http.webSocket.WebSocketSession;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -14,6 +16,8 @@ import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.UnsupportedEncodingException;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.HOST;
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
@@ -70,6 +74,9 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                 } else {
                     logger.debug("websocket握手成功！！！！！！！！！！");
                     handshaker.handshake(ctx.channel(), req);//把握手消息返回给客户端
+                    WebSocketSession session = new WebSocketSession();
+                    session.setCtx(ctx);
+                    SessionManager.put(ctx, session);
                 }
             } else {//正常http请求
                 if (req instanceof HttpRequest) {
@@ -82,18 +89,12 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     }
                 }
                 if (req instanceof HttpContent) {
-//                    HttpContent content = (HttpContent)req;
-                    //int cmd = req.headers().getInt("CMD");
-                    logger.debug("普通HTTP请求COTENT！！！！！！！！！！");
-
+                    //logger.debug("普通HTTP请求COTENT！！！！！！！！！！");
                     ByteBuf buf = Unpooled.copiedBuffer(req.content());
-                    //System.out.println("@@@@" + new String(buf.array(), "utf-8"));
                     JSONObject jo = JSON.parseObject(new String(buf.array(), "utf-8"));
                     int cmd = jo.getInteger("cmd");
                     String token = jo.getString("token");
                     Object m = JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
-//                    Message msg = Message.newBuilder().cmd(cmd).message(m)
-//                            .build();
                     IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
                     if (handler == null) {
                         MessageUtil.sendHttpResponse(ctx, req, BAD_REQUEST, null);
@@ -109,7 +110,7 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
     }
 
     private void handleWebSocketFrame(ChannelHandlerContext ctx,
-                                      WebSocketFrame frame) {
+                                      WebSocketFrame frame) throws UnsupportedEncodingException {
 
         // 判断是否是关闭链路的指令
         if (frame instanceof CloseWebSocketFrame) {
@@ -123,22 +124,37 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     new PongWebSocketFrame(frame.content().retain()));
             return;
         }
-        // 本例程仅支持文本消息，不支持二进制消息
-        if (!(frame instanceof TextWebSocketFrame)) {
+
+        if (!(frame instanceof BinaryWebSocketFrame)) {
             throw new UnsupportedOperationException(String.format(
                     "%s frame types not supported", frame.getClass().getName()));
         }
 
         // 返回应答消息
-        String request = ((TextWebSocketFrame) frame).text();
+//        String request = ((TextWebSocketFrame) frame).text();
 
-        logger.debug(String.format("%s received %s", ctx.channel(), request));
+
+
+//        ByteBuf buf = Unpooled.copiedBuffer(frame.content());
+//        JSONObject jo = JSON.parseObject(new String(buf.array(), "utf-8"));
+//        int cmd = jo.getInteger("cmd");
+//        String token = jo.getString("token");
+//        Object m = JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
+//        IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
+//        if (handler == null) {
+////            MessageUtil.sendWebSocketResponse(ctx,);
+//            logger.error("handler is null");
+//        } else {
+//            messageLogicExecutor.execute(handler, ctx, req, cmd, token, m);
+//        }
+//
+//        logger.debug(String.format("%s received %s", ctx.channel(), request));
         //这里判断是否登陆
 
-        ctx.channel().write(
-                new TextWebSocketFrame(request
-                        + " , 欢迎使用Netty WebSocket服务，现在时刻："
-                        + new java.util.Date().toString()));
+//        ctx.channel().write(
+//                new TextWebSocketFrame(request
+//                        + " , 欢迎使用Netty WebSocket服务，现在时刻："
+//                        + new java.util.Date().toString()));
     }
 
     private static void sendHttpResponse(ChannelHandlerContext ctx,
