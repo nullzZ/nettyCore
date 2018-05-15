@@ -41,7 +41,7 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
                             if (executorCallBack != null) {
                                 executorCallBack.onHandleBefor(ctx, msg);
                             }
-                            Object r = handler.execute(ctx, token, msg);
+                            Object r = handler.execute(token, msg);
                             if (r == null || r instanceof Void) {
 
                             } else {

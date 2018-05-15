@@ -3,7 +3,7 @@ package game.core.nettyCore.http;
 /**
  * @author nullzZ
  */
-public interface IHttpHandler<R, M, S> {
+public interface IHttpHandler<M, S> {
 
-    S execute(R r, String token, M m) throws Throwable;
+    S execute(String token, M m) throws Throwable;
 }
