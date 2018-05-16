@@ -34,39 +34,35 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
 
     @Override
     public void execute(IHttpHandler handler, ChannelHandlerContext ctx, FullHttpRequest req, int cmd, String token, Object msg) {
-        if (handler != null) {
-            es.execute(() -> {
-                        try {
-                            long now = System.currentTimeMillis();
-                            if (executorCallBack != null) {
-                                executorCallBack.onHandleBefor(ctx, msg);
-                            }
-                            Object r = handler.execute(token, msg);
-                            if (r == null || r instanceof Void) {
-
-                            } else {
-                                HttpResponse rr = (HttpResponse) r;
-                                HttpResponseMessage res = new HttpResponseMessage();
-                                res.setCmd(cmd);
-                                res.setRet(rr.getRet());
-                                res.setData(r);
-                                MessageUtil.sendHttpResponse(ctx, req, res);
-                            }
-                            if (executorCallBack != null) {
-                                executorCallBack.onHandleAfer(ctx, msg);
-                            }
-                            long time = System.currentTimeMillis() - now;
-                            if (time > 300) {
-                                logger.error("[业务逻辑处理时间] handler:" + cmd + "|time:" + time);
-                            }
-                        } catch (Throwable e) {
-                            logger.error("logic 异常-", e);
+        es.execute(() -> {
+                    try {
+                        long now = System.currentTimeMillis();
+                        if (executorCallBack != null) {
+                            executorCallBack.onHandleBefor(ctx, msg);
                         }
+                        Object r = handler.execute(token, msg);
+                        if (r == null || r instanceof Void) {
+
+                        } else {
+                            HttpResponse rr = (HttpResponse) r;
+                            HttpResponseMessage res = new HttpResponseMessage();
+                            res.setCmd(cmd);
+                            res.setRet(rr.getRet());
+                            res.setData(r);
+                            MessageUtil.sendHttpResponse(ctx, req, res);
+                        }
+                        if (executorCallBack != null) {
+                            executorCallBack.onHandleAfer(ctx, msg);
+                        }
+                        long time = System.currentTimeMillis() - now;
+                        if (time > 300) {
+                            logger.error("[业务逻辑处理时间] handler:" + cmd + "|time:" + time);
+                        }
+                    } catch (Throwable e) {
+                        logger.error("logic 异常-", e);
                     }
-            );
-        } else {
-            logger.error("logic 异常-handler is null|cmd=" + cmd);
-        }
+                }
+        );
     }
 
 }

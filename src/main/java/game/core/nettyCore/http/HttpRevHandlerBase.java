@@ -91,16 +91,18 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                 if (req instanceof HttpContent) {
                     //logger.debug("普通HTTP请求COTENT！！！！！！！！！！");
                     ByteBuf buf = Unpooled.copiedBuffer(req.content());
-                    JSONObject jo = JSON.parseObject(new String(buf.array(), "utf-8"));
+                    JSONObject jo = JSON.parseObject(buf.array(), JSONObject.class);
                     int cmd = jo.getInteger("cmd");
                     String token = jo.getString("token");
                     Object m = JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
+
                     IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
                     if (handler == null) {
                         MessageUtil.sendHttpResponse(ctx, req, BAD_REQUEST, null);
-                        logger.error("handler is null");
+                        logger.error("handler is null | cmd:" + cmd);
                     } else {
                         messageLogicExecutor.execute(handler, ctx, req, cmd, token, m);
+//                        messageLogicExecutor.execute(handler, ctx, req, httpRequest);
                     }
                 }
             }
@@ -132,7 +134,6 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
 
         // 返回应答消息
 //        String request = ((TextWebSocketFrame) frame).text();
-
 
 
 //        ByteBuf buf = Unpooled.copiedBuffer(frame.content());
