@@ -59,6 +59,14 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
                             logger.error("[业务逻辑处理时间] handler:" + cmd + "|time:" + time);
                         }
                     } catch (Throwable e) {
+                        HttpResponseMessage res = new HttpResponseMessage();
+                        res.setCmd(cmd);
+                        res.setRet(-1);
+                        try {
+                            MessageUtil.sendHttpResponse(ctx, req, res);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
                         logger.error("logic 异常-", e);
                     }
                 }
