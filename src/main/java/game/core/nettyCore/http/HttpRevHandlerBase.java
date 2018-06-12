@@ -14,6 +14,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,8 +95,23 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     JSONObject jo = JSON.parseObject(buf.array(), JSONObject.class);
                     int cmd = jo.getInteger("cmd");
                     String token = jo.getString("token");
-                    Object m = JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
-
+                    HttpRequest m = (HttpRequest) JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
+                    String d = req.headers().get("host");
+                    String ip = req.headers().get("x-forwarded-for");
+                    String referer = req.headers().get("referer");
+                    String ua = req.headers().get("user-agent");
+                    if (StringUtils.isNotEmpty(d)) {
+                        m.setDomain(d);
+                    }
+                    if (StringUtils.isNotEmpty(ip)) {
+                        m.setIp(ip);
+                    }
+                    if (StringUtils.isNotEmpty(referer)) {
+                        m.setReferer(referer);
+                    }
+                    if (StringUtils.isNotEmpty(ua)) {
+                        m.setUa(ua);
+                    }
                     IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
                     if (handler == null) {
                         MessageUtil.sendHttpResponse(ctx, req, BAD_REQUEST, null);

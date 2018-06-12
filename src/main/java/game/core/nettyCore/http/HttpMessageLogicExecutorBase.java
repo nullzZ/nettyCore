@@ -33,7 +33,7 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
     }
 
     @Override
-    public void execute(IHttpHandler handler, ChannelHandlerContext ctx, FullHttpRequest req, int cmd, String token, Object msg) {
+    public void execute(IHttpHandler handler, ChannelHandlerContext ctx, FullHttpRequest req, int cmd, String token, HttpRequest msg) {
         es.execute(() -> {
                     try {
                         long now = System.currentTimeMillis();
