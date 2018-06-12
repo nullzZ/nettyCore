@@ -95,7 +95,12 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     JSONObject jo = JSON.parseObject(buf.array(), JSONObject.class);
                     int cmd = jo.getInteger("cmd");
                     String token = jo.getString("token");
-                    HttpRequest m = (HttpRequest) JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
+                    String dd = "{}";
+                    if (jo.containsKey("data")) {
+                        dd = jo.getString("data");
+                    }
+
+                    HttpRequest m = (HttpRequest) JSON.parseObject(dd, serverDef.handlerManager.getMessageClazz(cmd));
                     String d = req.headers().get("host");
                     String ip = req.headers().get("x-forwarded-for");
                     String referer = req.headers().get("referer");

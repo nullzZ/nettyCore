@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="560fea24-f430-4f39-a5d6-63293d1e37cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/AbstractHttpMessageLogicExecutorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/AbstractHttpMessageLogicExecutorBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,15 +25,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DefaultClientChannelInitializer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/client/DefaultClientChannelInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -54,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpMessageLogicExecutorBase.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HttpMessageLogicExecutorBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+            <state relative-caret-position="46">
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -72,11 +61,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpRevHandlerBase.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HttpRevHandlerBase.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="119" column="49" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="49" />
+            <state relative-caret-position="318">
+              <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HttpMessage.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.24.Final/netty-all-4.1.24.Final.jar!/io/netty/handler/codec/http/HttpMessage.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -102,8 +100,8 @@
       <file leaf-file-name="HttpRequest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="4" column="33" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="33" />
+            <state relative-caret-position="92">
+              <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
               <folding>
                 <element signature="e#524#525#0" expanded="true" />
                 <element signature="e#553#554#0" expanded="true" />
@@ -205,9 +203,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/IHttpHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/AbstractHttpMessageLogicExecutorBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java" />
       </list>
     </option>
   </component>
@@ -499,12 +497,12 @@
       <workItem from="1527554864640" duration="72000" />
       <workItem from="1527735428518" duration="914000" />
       <workItem from="1528251026237" duration="599000" />
-      <workItem from="1528773649883" duration="2548000" />
+      <workItem from="1528773649883" duration="4581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163873000" />
+    <option name="totallyTimeSpent" value="165906000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
@@ -516,7 +514,7 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.32593122" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.32593122" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32971507" />
@@ -559,13 +557,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/IExecutorCallBack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="61" lean-forward="true" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/HandlerManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -875,10 +866,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/AbstractHttpMessageLogicExecutorBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/IHttpHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="4" column="33" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="33" />
+        <state relative-caret-position="92">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding>
             <element signature="e#524#525#0" expanded="true" />
             <element signature="e#553#554#0" expanded="true" />
@@ -900,31 +912,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="119" column="49" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/AbstractHttpMessageLogicExecutorBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/IHttpHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpMessageLogicExecutorBase.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.24.Final/netty-all-4.1.24.Final.jar!/io/netty/handler/codec/http/HttpMessage.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="101" lean-forward="true" selection-start-line="101" selection-end-line="101" />
         </state>
       </provider>
     </entry>
