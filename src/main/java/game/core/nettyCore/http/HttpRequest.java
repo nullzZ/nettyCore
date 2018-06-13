@@ -20,6 +20,11 @@ public abstract class HttpRequest {
      */
     @JSONField(serialize = false)
     private String referer;
+    /**
+     * 渠道
+     */
+    @JSONField(serialize = false)
+    private String channelId;
 
     public String getDomain() {
         return domain;
@@ -51,5 +56,13 @@ public abstract class HttpRequest {
 
     public void setReferer(String referer) {
         this.referer = referer;
+    }
+
+    public String getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
     }
 }

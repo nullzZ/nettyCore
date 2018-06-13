@@ -105,6 +105,7 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     String ip = req.headers().get("x-forwarded-for");
                     String referer = req.headers().get("referer");
                     String ua = req.headers().get("user-agent");
+                    String channel = req.headers().get("channel");
                     if (StringUtils.isNotEmpty(d)) {
                         m.setDomain(d);
                     }
@@ -116,6 +117,9 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     }
                     if (StringUtils.isNotEmpty(ua)) {
                         m.setUa(ua);
+                    }
+                    if (StringUtils.isNotEmpty(channel)) {
+                        m.setChannelId(channel);
                     }
                     IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
                     if (handler == null) {
