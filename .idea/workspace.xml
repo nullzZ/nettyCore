@@ -6,11 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="560fea24-f430-4f39-a5d6-63293d1e37cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/http/HttpRevHandlerBase.java" afterDir="false" />
-    </list>
+    <list default="true" id="560fea24-f430-4f39-a5d6-63293d1e37cd" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -494,12 +490,12 @@
       <workItem from="1527735428518" duration="914000" />
       <workItem from="1528251026237" duration="599000" />
       <workItem from="1528773649883" duration="5392000" />
-      <workItem from="1528854931639" duration="217000" />
+      <workItem from="1528854931639" duration="705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166934000" />
+    <option name="totallyTimeSpent" value="167422000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
