@@ -1,4 +1,4 @@
-package game.core.nettyCore;
+package game.core.nettyCore.session;
 
 import io.netty.channel.ChannelHandlerContext;
 

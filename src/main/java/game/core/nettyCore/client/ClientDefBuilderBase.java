@@ -25,6 +25,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
     private AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
     private HandlerManager handlerManager;
     private String hanlderPackageName;
+    private boolean isSpring;
 
 
     // private HttpResourceHandler httpResourceHandler;// hasDefault
@@ -89,6 +90,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
 
     /**
      * 是否开启默认心跳 大于0开始
+     *
      * @param clientIdleTimeout
      * @return
      */
@@ -135,7 +137,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
 
         try {
             this.handlerManager = new HandlerManager();
-            this.handlerManager.init(hanlderPackageName);
+            this.handlerManager.init(hanlderPackageName, isSpring);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package game.core.nettyCore;
+package game.core.nettyCore.serverDef;
 
+import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.HandlerManager;
+import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.defaults.DefaultProtocolFactorySelectorFactory;
 import game.core.nettyCore.defaults.MessageLogicExecutorBase;
 import game.core.nettyCore.proto.ProtocolFactorySelectorFactory;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.socket.SocketChannel;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -29,16 +30,16 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
 
     private String name = "netty-" + ID.getAndIncrement();
     private int serverPort = 8081;
-    private int maxFrameSize = MAX_FRAME_SIZE;
-    private int maxConnections;
-    private ChannelInitializer<SocketChannel> channelInitializer;// hasDefault
-    private long clientIdleTimeout;// hasDefault
-    private ProtocolFactorySelectorFactory protocolFactorySelectorFactory;//hasDefault
-    private ProtocolType protocolType;
-    private AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
-    private HandlerManager handlerManager;
-    private String hanlderPackageName;
-    private IExecutorCallBack executorCallBack;
+    protected int maxFrameSize = MAX_FRAME_SIZE;
+    protected int maxConnections;
+    protected long clientIdleTimeout;// hasDefault
+    protected ProtocolFactorySelectorFactory protocolFactorySelectorFactory;//hasDefault
+    protected ProtocolType protocolType;
+    protected AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
+    protected HandlerManager handlerManager;
+    protected String hanlderPackageName;
+    protected IExecutorCallBack executorCallBack;
+    protected boolean isSpring;
 
     // private HttpResourceHandler httpResourceHandler;// hasDefault
     // private HttpHandlerFactory httpHandlerFactory;// hasDefault
@@ -99,6 +100,11 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
         return (T) this;
     }
 
+    public T isSpring(boolean isSpring) {
+        this.isSpring = isSpring;
+        return (T) this;
+    }
+
 
     /**
      * @param clientIdleTimeout 秒
@@ -110,11 +116,6 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
         return (T) this;
     }
 
-    @SuppressWarnings("unchecked")
-    public T contextHandlerInstaller(ChannelInitializer<SocketChannel> channelInitializer) {
-        this.channelInitializer = channelInitializer;
-        return (T) this;
-    }
 
     /**
      * hanlder存放的包名
@@ -157,7 +158,7 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
 
 
             this.handlerManager = new HandlerManager();
-            this.handlerManager.init(hanlderPackageName);
+            this.handlerManager.init(hanlderPackageName, isSpring);
 
             if (messageLogicExecutor == null) {
                 this.messageLogicExecutor = new MessageLogicExecutorBase(executorCallBack);
@@ -165,7 +166,7 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
                 this.messageLogicExecutor = messageLogicExecutor;
             }
 
-            return new ServerDef(name, serverPort, maxFrameSize, maxConnections, channelInitializer, clientIdleTimeout,
+            return new ServerDef(name, serverPort, maxFrameSize, maxConnections, clientIdleTimeout,
                     messageLogicExecutor, protocolFactorySelectorFactory.createProtocolFactorySelector(), protocolType,
                     handlerManager, executorCallBack);
         } catch (Exception e) {

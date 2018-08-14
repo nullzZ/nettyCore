@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package game.core.nettyCore;
+package game.core.nettyCore.serverDef;
 
 public class ServerDefBuilder extends ServerDefBuilderBase<ServerDefBuilder> {
 }

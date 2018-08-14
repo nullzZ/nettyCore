@@ -1,6 +1,7 @@
-package game.core.nettyCore.coder;
+package game.core.nettyCore.coder.socket;
 
-import game.core.nettyCore.ServerDef;
+import game.core.nettyCore.serverDef.ServerDef;
+import game.core.nettyCore.coder.IMessageProtocol;
 import game.core.nettyCore.model.Message;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

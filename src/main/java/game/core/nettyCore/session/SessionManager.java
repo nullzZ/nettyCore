@@ -1,5 +1,6 @@
-package game.core.nettyCore.websocket;
+package game.core.nettyCore.session;
 
+import game.core.nettyCore.session.WebSocketSession;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.util.Map;

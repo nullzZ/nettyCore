@@ -1,4 +1,4 @@
-package game.core.nettyCore.bootstrap;
+package game.core.nettyCore.bootstrap.websocket;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -12,11 +12,9 @@ import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.ThreadFactory;
+public class WebSocketCommonServer implements java.io.Closeable {
 
-public class CommonServer implements java.io.Closeable {
-
-    private static final Logger logger = LoggerFactory.getLogger(CommonServer.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebSocketCommonServer.class);
 
     public int bossThreadSize = 1;
     public int workerThreadSize = Runtime.getRuntime().availableProcessors() * 2;
@@ -32,17 +30,11 @@ public class CommonServer implements java.io.Closeable {
             throws Exception {
         try {
             ServerBootstrap b = new ServerBootstrap();
-            bossGroup = new NioEventLoopGroup(bossThreads, new ThreadFactory() {
-
-                public Thread newThread(Runnable r) {
-                    return new Thread(r, "netty_boss");
-                }
+            bossGroup = new NioEventLoopGroup(bossThreads, r -> {
+                return new Thread(r, "netty_boss");
             });
-            workerGroup = new NioEventLoopGroup(workThreads, new ThreadFactory() {
-
-                public Thread newThread(Runnable r) {
-                    return new Thread(r, "netty_worker");
-                }
+            workerGroup = new NioEventLoopGroup(workThreads, r -> {
+                return new Thread(r, "netty_worker");
             });
             b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(channelInitializer)
                     .option(ChannelOption.SO_BACKLOG, 128).option(ChannelOption.TCP_NODELAY, true)

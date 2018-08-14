@@ -13,18 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package game.core.nettyCore;
+package game.core.nettyCore.serverDef;
 
+import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.HandlerManager;
+import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.defaults.DefaultChannelInitializer;
 import game.core.nettyCore.proto.IProtocolFactorySelector;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 
+/**
+ * 服务器定义
+ */
 public class ServerDef {
+
     protected final String name;
     public final int port;
-    public final ChannelInitializer<SocketChannel> channelInitializer;
+    public ChannelInitializer<SocketChannel> channelInitializer;
     public final ProtocolType protocolType;
     public final IProtocolFactorySelector protocolFactorySelector;
     public final AbstractMessageLogicExecutorBase messageLogicExecutor;// logic
@@ -36,23 +43,17 @@ public class ServerDef {
     public final IExecutorCallBack executorCallBack;
 
     public ServerDef(String name, int port, int maxFrameSize, int maxConnections,
-                     ChannelInitializer<SocketChannel> channelInitializer, long clientIdleTimeout,
+                     long clientIdleTimeout,
                      AbstractMessageLogicExecutorBase messageLogicExecutor, IProtocolFactorySelector protocolFactorySelector,
-                     ProtocolType protocolType, HandlerManager handlerManager, IExecutorCallBack executorCallBack) {
+                     ProtocolType protocolType, HandlerManager handlerManager,
+                     IExecutorCallBack executorCallBack) {
         this.name = name;
         this.port = port;
-
-        if (channelInitializer == null) {
-            this.channelInitializer = new DefaultChannelInitializer(this);
-        } else {
-            this.channelInitializer = channelInitializer;
-        }
+        this.channelInitializer = new DefaultChannelInitializer(this);
         this.messageLogicExecutor = messageLogicExecutor;
         this.protocolFactorySelector = protocolFactorySelector;
         this.protocolType = protocolType;
         this.handlerManager = handlerManager;
-
-
         this.maxFrameSize = maxFrameSize;
         this.maxConnections = maxConnections;
         this.clientIdleTimeout = clientIdleTimeout;

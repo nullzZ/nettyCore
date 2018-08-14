@@ -1,11 +1,11 @@
 package game.core.nettyCore.websocket;
 
-import game.core.nettyCore.websocket.handler.IWebSocketHandler;
+import game.core.nettyCore.IHandler;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
  * @author nullzZ
  */
 public interface AbstractWebSocketLogicExecutorBase {
-    void execute(IWebSocketHandler handler, ChannelHandlerContext ctx, int cmd, Object msg);
+    void execute(IHandler handler, ChannelHandlerContext ctx, int cmd, Object msg);
 }

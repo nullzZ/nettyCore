@@ -1,13 +1,15 @@
 package game.core.nettyCore.websocket;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import game.core.nettyCore.http.AbstractHttpMessageLogicExecutorBase;
-import game.core.nettyCore.http.HttpRequest;
-import game.core.nettyCore.http.IHttpHandler;
+import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.HandlerManager;
+import game.core.nettyCore.IHandler;
+import game.core.nettyCore.coder.IMessageProtocol;
+import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.http.webSocket.SessionManager;
 import game.core.nettyCore.http.webSocket.WebSocketSession;
-import game.core.nettyCore.util.MessageUtil;
+import game.core.nettyCore.model.Message;
+import game.core.nettyCore.proto.IProtocolFactorySelector;
+import game.core.nettyCore.serverDef.ServerDef;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -17,13 +19,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 
-import static io.netty.handler.codec.http.HttpHeaderNames.HOST;
 import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
 import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
 
@@ -31,12 +31,28 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
     private static final Logger logger = LoggerFactory.getLogger(WebSocketRevHandlerBase.class);
     private WebSocketServerHandshaker handshaker;
     private static final String WEBSOCKET_PATH = "/websocket";
-    private final WebSocketServerDef serverDef;
-    private final AbstractHttpMessageLogicExecutorBase messageLogicExecutor;
+    private final ServerDef serverDef;
 
-    public WebSocketRevHandlerBase(WebSocketServerDef serverDef) {
+    private final AbstractMessageLogicExecutorBase messageLogicExecutor;
+    private final HandlerManager handlerManager;
+    private final IProtocolFactorySelector protocolFactorySelector;
+    private final ProtocolType protocolType;
+
+//    public WebSocketRevHandlerBase(AbstractMessageLogicExecutorBase messageLogicExecutor,
+//                                   HandlerManager handlerManager, IProtocolFactorySelector protocolFactorySelector,
+//                                   ProtocolType protocolType) {
+//        this.messageLogicExecutor = messageLogicExecutor;
+//        this.handlerManager = handlerManager;
+//        this.protocolFactorySelector = protocolFactorySelector;
+//        this.protocolType = protocolType;
+//    }
+
+    public WebSocketRevHandlerBase(ServerDef serverDef) {
         this.serverDef = serverDef;
-        messageLogicExecutor = serverDef.messageLogicExecutor;
+        this.messageLogicExecutor = serverDef.messageLogicExecutor;
+        this.handlerManager = serverDef.handlerManager;
+        this.protocolFactorySelector = serverDef.protocolFactorySelector;
+        this.protocolType = serverDef.protocolType;
     }
 
     @Override
@@ -69,7 +85,7 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
             if ("websocket".equals(req.headers().get("Upgrade"))) {//webSocket
                 // 构造握手响应返回，本机测试
                 WebSocketServerHandshakerFactory wsFactory = new WebSocketServerHandshakerFactory(
-                        "ws://" + req.headers().get(HOST) + WEBSOCKET_PATH
+                        getWebSocketLocation(req)
                         , null, false);
                 handshaker = wsFactory.newHandshaker(req);
                 if (handshaker == null) {
@@ -83,107 +99,72 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
                     SessionManager.put(ctx, session);
                 }
             } else {//正常http请求
-                if (req instanceof HttpRequest) {
-                    //non-get request
-                    if (HttpMethod.GET.equals(req.method())) {
-                        sendHttpResponse(ctx, req, new DefaultFullHttpResponse(HTTP_1_1,
-                                BAD_REQUEST));
-                        logger.debug("普通HTTP请求 不使用get！！！！！！！！！！");
-                        return;
-                    }
-                }
-                if (req instanceof HttpContent) {
-                    //logger.debug("普通HTTP请求COTENT！！！！！！！！！！");
-                    ByteBuf buf = Unpooled.copiedBuffer(req.content());
-                    JSONObject jo = JSON.parseObject(buf.array(), JSONObject.class);
-                    int cmd = jo.getInteger("cmd");
-                    String token = jo.getString("token");
-                    String dd = "{}";
-                    if (jo.containsKey("data")) {
-                        dd = jo.getString("data");
-                    }
-
-                    HttpRequest m = (HttpRequest) JSON.parseObject(dd, serverDef.handlerManager.getMessageClazz(cmd));
-                    String d = req.headers().get("host");
-                    String ip = req.headers().get("x-forwarded-for");
-                    String referer = req.headers().get("referer");
-                    String ua = req.headers().get("user-agent");
-                    String channel = req.headers().get("channel");
-                    if (StringUtils.isNotEmpty(d)) {
-                        m.setDomain(d);
-                    }
-                    if (StringUtils.isNotEmpty(ip)) {
-                        m.setIp(ip);
-                    }
-                    if (StringUtils.isNotEmpty(referer)) {
-                        m.setReferer(referer);
-                    }
-                    if (StringUtils.isNotEmpty(ua)) {
-                        m.setUa(ua);
-                    }
-                    if (StringUtils.isNotEmpty(channel)) {
-                        m.setChannelId(channel);
-                    }
-                    IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
-                    if (handler == null) {
-                        MessageUtil.sendHttpResponse(ctx, req, BAD_REQUEST, null);
-                        logger.error("handler is null | cmd:" + cmd);
-                    } else {
-                        messageLogicExecutor.execute(handler, ctx, req, cmd, token, m);
-//                        messageLogicExecutor.execute(handler, ctx, req, httpRequest);
-                    }
-                }
+                logger.error("非websocket请求");
+                sendHttpResponse(ctx, req, new DefaultFullHttpResponse(HTTP_1_1,
+                        BAD_REQUEST));
             }
         }
+    }
 
-
+    private static String getWebSocketLocation(HttpRequest req) {
+        String location = req.headers().get(HttpHeaderNames.HOST) + WEBSOCKET_PATH;
+        return "ws://" + location;
+//        if (WebSocketServer.SSL) {
+//            return "wss://" + location;
+//        } else {
+//            return "ws://" + location;
+//        }
     }
 
     private void handleWebSocketFrame(ChannelHandlerContext ctx,
                                       WebSocketFrame frame) throws UnsupportedEncodingException {
+        try {
+            // 判断是否是关闭链路的指令
+            if (frame instanceof CloseWebSocketFrame) {
+                handshaker.close(ctx.channel(),
+                        (CloseWebSocketFrame) frame.retain());
+                return;
+            }
+            // 判断是否是Ping消息
+            if (frame instanceof PingWebSocketFrame) {
+                ctx.channel().write(
+                        new PongWebSocketFrame(frame.content().retain()));
+                return;
+            }
 
-        // 判断是否是关闭链路的指令
-        if (frame instanceof CloseWebSocketFrame) {
-            handshaker.close(ctx.channel(),
-                    (CloseWebSocketFrame) frame.retain());
-            return;
+            if (!(frame instanceof BinaryWebSocketFrame)) {
+                throw new UnsupportedOperationException(String.format(
+                        "%s frame types not supported", frame.getClass().getName()));
+            }
+
+            ByteBuf byteBuf = frame.content();
+
+            if (byteBuf.readableBytes() < 2) {
+                return;
+            }
+            int len = byteBuf.readableBytes();
+            short cmd = byteBuf.readShort();
+            byte[] body = new byte[len - 2];
+            byteBuf.readBytes(body);
+
+            IHandler handler = handlerManager.getHandler(cmd);
+            if (handler == null) {
+//            MessageUtil.sendWebSocketResponse(ctx,);
+                logger.error("handler is null");
+            } else {
+                IMessageProtocol protocol = protocolFactorySelector.getProtocol(protocolType);
+                if (protocol == null) {
+                    logger.error("protocol is null");
+                    return;
+                }
+                Message mes = Message.newBuilder().cmd(cmd)
+                        .message(protocol.decode(body, handlerManager.getMessageClazz(cmd))).build();
+
+                messageLogicExecutor.execute(handler, ctx, mes);
+            }
+        } catch (Exception e) {
+            logger.error("网络异常", e);
         }
-        // 判断是否是Ping消息
-        if (frame instanceof PingWebSocketFrame) {
-            ctx.channel().write(
-                    new PongWebSocketFrame(frame.content().retain()));
-            return;
-        }
-
-        if (!(frame instanceof BinaryWebSocketFrame)) {
-            throw new UnsupportedOperationException(String.format(
-                    "%s frame types not supported", frame.getClass().getName()));
-        }
-
-        // 返回应答消息
-//        String request = ((TextWebSocketFrame) frame).text();
-
-
-//        ByteBuf buf = Unpooled.copiedBuffer(frame.content());
-//        JSONObject jo = JSON.parseObject(new String(buf.array(), "utf-8"));
-//        int cmd = jo.getInteger("cmd");
-//        String token = jo.getString("token");
-//        Object m = JSON.parseObject(jo.getString("data"), serverDef.handlerManager.getMessageClazz(cmd));
-//        IHttpHandler handler = serverDef.handlerManager.getHandler(cmd);
-//        if (handler == null) {
-////            MessageUtil.sendWebSocketResponse(ctx,);
-//            logger.error("handler is null");
-//        } else {
-//            messageLogicExecutor.execute(handler, ctx, req, cmd, token, m);
-//        }
-//
-//        logger.debug(String.format("%s received %s", ctx.channel(), request));
-        //这里判断是否登陆
-
-//        ctx.channel().write(
-//                new TextWebSocketFrame(request
-//                        + " , 欢迎使用Netty WebSocket服务，现在时刻："
-//                        + new java.util.Date().toString()));
     }
 
     private static void sendHttpResponse(ChannelHandlerContext ctx,

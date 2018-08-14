@@ -1,9 +1,9 @@
 package game.core.nettyCore.websocket;
 
 import game.core.nettyCore.IExecutorCallBack;
+import game.core.nettyCore.IHandler;
 import game.core.nettyCore.http.HttpResponse;
 import game.core.nettyCore.http.HttpResponseMessage;
-import game.core.nettyCore.websocket.handler.IWebSocketHandler;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class WebSocketLogicExecutorBase implements AbstractWebSocketLogicExecuto
     }
 
     @Override
-    public void execute(IWebSocketHandler handler, ChannelHandlerContext ctx, int cmd, Object msg) {
+    public void execute(IHandler handler, ChannelHandlerContext ctx, int cmd, Object msg) {
         if (handler != null) {
             es.execute(() -> {
                         try {

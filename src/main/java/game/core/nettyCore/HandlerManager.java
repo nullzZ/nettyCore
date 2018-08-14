@@ -1,5 +1,6 @@
 package game.core.nettyCore;
 
+import game.core.nettyCore.spring.SpringContextUtil;
 import game.core.nettyCore.util.ClassUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +17,10 @@ public class HandlerManager {
     @SuppressWarnings("rawtypes")
     private Map<Integer, IHandler> hanlers = new HashMap<>();
     private Map<Integer, Class<?>> messageClazz = new HashMap<>();
+    private boolean isSpring;
 
     @SuppressWarnings("rawtypes")
-    public void init(String packageName) throws Exception {
+    public void init(String packageName,boolean isSpring) throws Exception {
         List<Class<?>> clazzs = ClassUtil.getClasses(packageName);
         for (Class<?> c : clazzs) {
             HandlerAnnotation ann = c.getAnnotation(HandlerAnnotation.class);
@@ -37,11 +39,23 @@ public class HandlerManager {
 
     @SuppressWarnings("rawtypes")
     public IHandler getHandler(int id) {
-        return hanlers.get(id);
+        IHandler handler = hanlers.get(id);
+        if (isSpring) {
+            SpringContextUtil.getBean(toLowerCaseFirstOne(handler.getClass().getSimpleName()));
+        }
+        return handler;
     }
 
     public Class<?> getMessageClazz(int id) {
         return messageClazz.get(id);
+    }
+
+    //首字母转小写
+    private String toLowerCaseFirstOne(String s) {
+        if (Character.isLowerCase(s.charAt(0)))
+            return s;
+        else
+            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
     }
 
 }
