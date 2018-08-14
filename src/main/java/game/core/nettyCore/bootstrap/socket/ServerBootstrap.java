@@ -1,6 +1,6 @@
-package game.core.nettyCore.bootstrap;
+package game.core.nettyCore.bootstrap.socket;
 
-import game.core.nettyCore.ServerDef;
+import game.core.nettyCore.serverDef.ServerDef;
 import io.netty.channel.DefaultEventLoop;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;

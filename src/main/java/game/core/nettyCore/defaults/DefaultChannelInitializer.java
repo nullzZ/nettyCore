@@ -2,9 +2,9 @@ package game.core.nettyCore.defaults;
 
 import java.util.concurrent.TimeUnit;
 
-import game.core.nettyCore.ServerDef;
-import game.core.nettyCore.coder.MessageDecoder;
-import game.core.nettyCore.coder.MessageEncoder;
+import game.core.nettyCore.serverDef.ServerDef;
+import game.core.nettyCore.coder.socket.MessageDecoder;
+import game.core.nettyCore.coder.socket.MessageEncoder;
 import game.core.nettyCore.handler.ConnectionLimiterHandler;
 import game.core.nettyCore.handler.RecvRateLimiterHandler;
 import io.netty.channel.ChannelInitializer;

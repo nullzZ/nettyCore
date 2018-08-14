@@ -2,7 +2,7 @@ package game.core.nettyCore.defaults;
 
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
-import game.core.nettyCore.ServerDef;
+import game.core.nettyCore.serverDef.ServerDef;
 import game.core.nettyCore.model.Message;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.channel.ChannelHandlerContext;

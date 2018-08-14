@@ -1,0 +1,19 @@
+package game.core.nettyCore.session;
+
+import game.core.nettyCore.session.WebSocketSession;
+import io.netty.channel.ChannelHandlerContext;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class SessionManager {
+    private static Map<ChannelHandlerContext, WebSocketSession> sessions = new ConcurrentHashMap<>();
+
+    public static void put(ChannelHandlerContext ctx, WebSocketSession session) {
+        sessions.put(ctx, session);
+    }
+
+    public static WebSocketSession getSession(ChannelHandlerContext ctx) {
+        return sessions.get(ctx);
+    }
+}

@@ -1,7 +1,5 @@
 package game.core.nettyCore;
 
-import io.netty.channel.ChannelHandlerContext;
-
 /**
  * @author nullzZ
  */
