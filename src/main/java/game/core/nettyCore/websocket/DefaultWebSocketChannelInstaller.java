@@ -42,6 +42,8 @@ public class DefaultWebSocketChannelInstaller extends ChannelInitializer<SocketC
     @Override
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();
+//        pipeline.addLast("WebSocketMessageEncoder",
+//                new WebSocketMessageEncoder(protocolType, protocolFactorySelector));
         pipeline.addLast("http-codec",
                 new HttpServerCodec());//将请求和应答消息解码为HTTP消息
         pipeline.addLast("aggregator",

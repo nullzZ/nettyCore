@@ -28,7 +28,7 @@ public class HttpHandlerManager {
                 // Field f = c.getSuperclass().getDeclaredField("message");
                 // f.setAccessible(true);
                 // f.set(obj, ann.messageClass());
-                messageClazz.put(ann.id(), ann.messageClass());
+//                messageClazz.put(ann.id(), ann.messageClass());
                 hanlers.put(ann.id(), (IHttpHandler) obj);
                 logger.debug("加载handler:--" + c.getName());
 

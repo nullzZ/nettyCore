@@ -151,3 +151,19 @@
 2018-08-15 17:52:36 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x2bdbdf97, L:/0:0:0:0:0:0:0:0:8081] ACTIVE
 2018-08-15 17:52:45 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x2bdbdf97, L:/0:0:0:0:0:0:0:0:8081] READ: [id: 0x5fcc821d, L:/0:0:0:0:0:0:0:1:8081 - R:/0:0:0:0:0:0:0:1:53683]
 2018-08-15 17:52:45 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x2bdbdf97, L:/0:0:0:0:0:0:0:0:8081] READ COMPLETE
+2018-08-15 22:54:53 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4409e2b3] REGISTERED
+2018-08-15 22:54:53 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4409e2b3] BIND: 0.0.0.0/0.0.0.0:8081
+2018-08-15 22:54:53 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4409e2b3, L:/0:0:0:0:0:0:0:0:8081] ACTIVE
+2018-08-15 22:54:58 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4409e2b3, L:/0:0:0:0:0:0:0:0:8081] UNREGISTERED
+2018-08-15 22:55:11 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4e9180d7] REGISTERED
+2018-08-15 22:55:11 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4e9180d7] BIND: 0.0.0.0/0.0.0.0:8081
+2018-08-15 22:55:11 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4e9180d7, L:/0:0:0:0:0:0:0:0:8081] ACTIVE
+2018-08-15 22:56:06 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4e9180d7, L:/0:0:0:0:0:0:0:0:8081] READ: [id: 0x12a81ded, L:/0:0:0:0:0:0:0:1:8081 - R:/0:0:0:0:0:0:0:1:61539]
+2018-08-15 22:56:06 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4e9180d7, L:/0:0:0:0:0:0:0:0:8081] READ COMPLETE
+2018-08-15 22:56:30 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x4e9180d7, L:/0:0:0:0:0:0:0:0:8081] UNREGISTERED
+2018-08-15 22:56:36 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x0f0c3a78] REGISTERED
+2018-08-15 22:56:36 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x0f0c3a78] BIND: 0.0.0.0/0.0.0.0:8081
+2018-08-15 22:56:36 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x0f0c3a78, L:/0:0:0:0:0:0:0:0:8081] ACTIVE
+2018-08-15 22:56:47 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x0f0c3a78, L:/0:0:0:0:0:0:0:0:8081] READ: [id: 0x37569ee2, L:/0:0:0:0:0:0:0:1:8081 - R:/0:0:0:0:0:0:0:1:61553]
+2018-08-15 22:56:47 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x0f0c3a78, L:/0:0:0:0:0:0:0:0:8081] READ COMPLETE
+2018-08-15 22:57:30 [INFO ] io.netty.handler.logging.LoggingHandler (AbstractInternalLogger.java:150) - [id: 0x0f0c3a78, L:/0:0:0:0:0:0:0:0:8081] UNREGISTERED

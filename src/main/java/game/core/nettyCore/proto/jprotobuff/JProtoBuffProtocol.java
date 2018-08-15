@@ -6,9 +6,9 @@ import game.core.nettyCore.coder.IMessageProtocol;
 
 public class JProtoBuffProtocol implements IMessageProtocol {
     @Override
-    public <T> byte[] encode(T message, Class<T> clazz) throws Exception {
+    public <T> byte[] encode(T message) throws Exception {
         Codec<T> simpleTypeCodec = ProtobufProxy
-                .create(clazz);
+                .create((Class<T>) message.getClass());
         return simpleTypeCodec.encode(message);
     }
 

@@ -9,7 +9,7 @@ import io.netty.channel.ChannelHandlerContext;
 /**
  * @author nullzZ
  */
-@HandlerAnnotation(id = 10001, messageClass = TestResponse.class)
+@HandlerAnnotation(id = 10001)
 public class TestHandler implements INoResultHandler<ChannelHandlerContext, TestResponse> {
 
     @Override
