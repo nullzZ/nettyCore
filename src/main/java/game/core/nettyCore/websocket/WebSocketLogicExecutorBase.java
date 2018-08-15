@@ -1,9 +1,11 @@
 package game.core.nettyCore.websocket;
 
+import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.http.HttpResponse;
 import game.core.nettyCore.http.HttpResponseMessage;
+import game.core.nettyCore.model.Message;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author nullzZ
  */
-public class WebSocketLogicExecutorBase implements AbstractWebSocketLogicExecutorBase {
+public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorBase {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketLogicExecutorBase.class);
     private ExecutorService es = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1, new ThreadFactory() {
@@ -34,7 +36,7 @@ public class WebSocketLogicExecutorBase implements AbstractWebSocketLogicExecuto
     }
 
     @Override
-    public void execute(IHandler handler, ChannelHandlerContext ctx, int cmd, Object msg) {
+    public void execute(IHandler handler, ChannelHandlerContext ctx, Message msg) {
         if (handler != null) {
             es.execute(() -> {
                         try {
@@ -43,6 +45,7 @@ public class WebSocketLogicExecutorBase implements AbstractWebSocketLogicExecuto
                                 executorCallBack.onHandleBefor(ctx, msg);
                             }
                             Object r = null;
+                            int cmd = msg.getCmd();
                             if (cmd == 100) {//登陆请求
 
                             } else {
@@ -72,7 +75,7 @@ public class WebSocketLogicExecutorBase implements AbstractWebSocketLogicExecuto
                     }
             );
         } else {
-            logger.error("logic 异常-handler is null|cmd=" + cmd);
+            logger.error("logic 异常-handler is null|cmd=" + msg.getCmd());
         }
     }
 

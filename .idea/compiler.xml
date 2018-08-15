@@ -9,5 +9,8 @@
         <module name="nettyCore" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="nettyCore" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

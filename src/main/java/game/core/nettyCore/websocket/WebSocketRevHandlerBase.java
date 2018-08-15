@@ -31,29 +31,29 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
     private static final Logger logger = LoggerFactory.getLogger(WebSocketRevHandlerBase.class);
     private WebSocketServerHandshaker handshaker;
     private static final String WEBSOCKET_PATH = "/websocket";
-    private final ServerDef serverDef;
+//    private final ServerDef serverDef;
 
     private final AbstractMessageLogicExecutorBase messageLogicExecutor;
     private final HandlerManager handlerManager;
     private final IProtocolFactorySelector protocolFactorySelector;
     private final ProtocolType protocolType;
 
-//    public WebSocketRevHandlerBase(AbstractMessageLogicExecutorBase messageLogicExecutor,
-//                                   HandlerManager handlerManager, IProtocolFactorySelector protocolFactorySelector,
-//                                   ProtocolType protocolType) {
-//        this.messageLogicExecutor = messageLogicExecutor;
-//        this.handlerManager = handlerManager;
-//        this.protocolFactorySelector = protocolFactorySelector;
-//        this.protocolType = protocolType;
-//    }
-
-    public WebSocketRevHandlerBase(ServerDef serverDef) {
-        this.serverDef = serverDef;
-        this.messageLogicExecutor = serverDef.messageLogicExecutor;
-        this.handlerManager = serverDef.handlerManager;
-        this.protocolFactorySelector = serverDef.protocolFactorySelector;
-        this.protocolType = serverDef.protocolType;
+    public WebSocketRevHandlerBase(AbstractMessageLogicExecutorBase messageLogicExecutor,
+                                   HandlerManager handlerManager, IProtocolFactorySelector protocolFactorySelector,
+                                   ProtocolType protocolType) {
+        this.messageLogicExecutor = messageLogicExecutor;
+        this.handlerManager = handlerManager;
+        this.protocolFactorySelector = protocolFactorySelector;
+        this.protocolType = protocolType;
     }
+
+//    public WebSocketRevHandlerBase(ServerDef serverDef) {
+//        this.serverDef = serverDef;
+//        this.messageLogicExecutor = serverDef.messageLogicExecutor;
+//        this.handlerManager = serverDef.handlerManager;
+//        this.protocolFactorySelector = serverDef.protocolFactorySelector;
+//        this.protocolType = serverDef.protocolType;
+//    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {

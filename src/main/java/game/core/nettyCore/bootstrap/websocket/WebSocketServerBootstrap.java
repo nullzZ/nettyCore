@@ -1,6 +1,7 @@
 package game.core.nettyCore.bootstrap.websocket;
 
 import game.core.nettyCore.serverDef.ServerDef;
+import game.core.nettyCore.websocket.DefaultWebSocketChannelInstaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +28,8 @@ public class WebSocketServerBootstrap extends WebSocketCommonServer implements R
     }
 
     public void start() throws Exception {
-        super.start(serverDef.port,serverDef.channelInitializer);
+
+        super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef));
     }
 
     public void start(int bossThreads, int workThreads) throws Exception {

@@ -36,14 +36,14 @@ public class WebSocketCommonServer implements java.io.Closeable {
             workerGroup = new NioEventLoopGroup(workThreads, r -> {
                 return new Thread(r, "netty_worker");
             });
-            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(channelInitializer)
-                    .option(ChannelOption.SO_BACKLOG, 128).option(ChannelOption.TCP_NODELAY, true)
-                    .option(ChannelOption.SO_KEEPALIVE, true).option(ChannelOption.SO_REUSEADDR, true);
+            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(channelInitializer);
+//            .option(ChannelOption.SO_BACKLOG, 128).option(ChannelOption.TCP_NODELAY, true)
+//                    .option(ChannelOption.SO_KEEPALIVE, true).option(ChannelOption.SO_REUSEADDR, true)
 
             b.handler(new LoggingHandler(LogLevel.INFO));
 
             f = b.bind(port).sync();
-            logger.info("Server started and listen on port:" + port);
+            logger.info("webSocketServer started and listen on port:" + port);
             f.channel().closeFuture().sync();
         } finally {
             close_();

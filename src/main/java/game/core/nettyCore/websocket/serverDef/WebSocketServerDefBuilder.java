@@ -1,4 +1,4 @@
-package game.core.nettyCore.serverDef.websocket;
+package game.core.nettyCore.websocket.serverDef;
 
 public class WebSocketServerDefBuilder extends WebSocketServerDefBuilderBase<WebSocketServerDefBuilder> {
 }

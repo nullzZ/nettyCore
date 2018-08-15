@@ -42,14 +42,14 @@ public class ServerDef {
     public final long clientIdleTimeout;
     public final IExecutorCallBack executorCallBack;
 
-    public ServerDef(String name, int port, int maxFrameSize, int maxConnections,
+    public ServerDef(String name, int port, ChannelInitializer<SocketChannel> channelInitializer, int maxFrameSize, int maxConnections,
                      long clientIdleTimeout,
                      AbstractMessageLogicExecutorBase messageLogicExecutor, IProtocolFactorySelector protocolFactorySelector,
                      ProtocolType protocolType, HandlerManager handlerManager,
                      IExecutorCallBack executorCallBack) {
         this.name = name;
         this.port = port;
-        this.channelInitializer = new DefaultChannelInitializer(this);
+        this.channelInitializer = channelInitializer;
         this.messageLogicExecutor = messageLogicExecutor;
         this.protocolFactorySelector = protocolFactorySelector;
         this.protocolType = protocolType;
