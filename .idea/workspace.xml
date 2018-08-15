@@ -26,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/serverDef/ServerDefBuilderBase.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="207">
-              <caret line="103" column="32" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
+              <caret line="163" column="44" selection-start-line="163" selection-start-column="44" selection-end-line="163" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -196,7 +196,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="width" value="1458" />
     <option name="height" value="867" />
@@ -527,12 +527,12 @@
       <workItem from="1534152976137" duration="2037000" />
       <workItem from="1534211434300" duration="2838000" />
       <workItem from="1534217145238" duration="5984000" />
-      <workItem from="1534227480086" duration="15015000" />
+      <workItem from="1534227480086" duration="15427000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193669000" />
+    <option name="totallyTimeSpent" value="194081000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -548,7 +548,7 @@
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.32593122" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3057325" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3057325" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -967,7 +967,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/serverDef/ServerDefBuilderBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
-          <caret line="103" column="32" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
+          <caret line="163" column="44" selection-start-line="163" selection-start-column="44" selection-end-line="163" selection-end-column="44" />
         </state>
       </provider>
     </entry>
