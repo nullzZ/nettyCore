@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import game.core.nettyCore.coder.IMessageProtocol;
 import game.core.nettyCore.coder.ProtocolType;
+import game.core.nettyCore.proto.jprotobuff.JProtoBuffProtocol;
 import game.core.nettyCore.proto.json.JsonProtocol;
 import game.core.nettyCore.proto.protostuff.ProtostuffProtocol;
 
@@ -28,6 +29,7 @@ public class ProtocolFactorySelector implements IProtocolFactorySelector {
         // protocolFactoryMap.put((short) -32223, new
         // TCompactProtocol.Factory());
         // protocolFactoryMap.put((short) 23345, new TJSONProtocol.Factory());
+        registProtocolFactory(ProtocolType.JPROTOBUFF, new JProtoBuffProtocol());
         registProtocolFactory(ProtocolType.PROTOSTUFF, new ProtostuffProtocol());
         registProtocolFactory(ProtocolType.JSON, new JsonProtocol());
     }

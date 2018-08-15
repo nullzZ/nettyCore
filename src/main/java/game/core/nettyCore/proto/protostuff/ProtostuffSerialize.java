@@ -10,8 +10,6 @@ import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtostuffIOUtil;
 import com.dyuproject.protostuff.Schema;
 
-import game.core.nettyCore.coder.IMessageSerialize;
-
 public class ProtostuffSerialize implements IMessageSerialize {
 	private static SchemaCache cachedSchema = SchemaCache.getInstance();
 	private static Objenesis objenesis = new ObjenesisStd(true);

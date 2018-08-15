@@ -145,39 +145,39 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
         return (T) this;
     }
 
-    public abstract ServerDef build() throws Exception;
 
+    public ServerDef build() throws Exception {
+        try {
+            checkState(hanlderPackageName != null, "hanlderPackageName not defined!");
 
-//    public ServerDef build() throws Exception {
-//        try {
-//            checkState(hanlderPackageName != null, "hanlderPackageName not defined!");
-//
-////            checkState(protocolType != notull, "potocolType not defined!");
+            checkState(protocolType != null, "potocolType not defined!");
+
+            //checkState(messageLogicExecutor != null, "messageLogicExecutor not defined!");
 //            if (protocolType == null) {
 //                protocolType = ProtocolType.PROTOSTUFF;
 //            }
-//
-//            if (protocolFactorySelectorFactory == null) {
-//                protocolFactorySelectorFactory = new DefaultProtocolFactorySelectorFactory();
-//            }
-//
-//
-//            this.handlerManager = new HandlerManager();
-//            this.handlerManager.init(hanlderPackageName, isSpring);
-//
+
+            if (protocolFactorySelectorFactory == null) {
+                protocolFactorySelectorFactory = new DefaultProtocolFactorySelectorFactory();
+            }
+
+
+            this.handlerManager = new HandlerManager();
+            this.handlerManager.init(hanlderPackageName, isSpring);
+
 //            if (messageLogicExecutor == null) {
 //                this.messageLogicExecutor = new MessageLogicExecutorBase(executorCallBack);
 //            } else {
 //                this.messageLogicExecutor = messageLogicExecutor;
 //            }
-//
-//            return new ServerDef(name, serverPort, channelInitializer, maxFrameSize, maxConnections, clientIdleTimeout,
-//                    messageLogicExecutor, protocolFactorySelectorFactory.createProtocolFactorySelector(), protocolType,
-//                    handlerManager, executorCallBack);
-//        } catch (Exception e) {
-//            throw e;
-//        }
-//    }
+
+            return new ServerDef(name, serverPort, maxFrameSize, maxConnections, clientIdleTimeout,
+                    messageLogicExecutor, protocolFactorySelectorFactory.createProtocolFactorySelector(), protocolType,
+                    handlerManager, executorCallBack);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     public static void checkState(boolean expression) {
         if (!expression) {

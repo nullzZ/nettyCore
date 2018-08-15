@@ -14,7 +14,7 @@ public class TestHandler implements IResultHandler<ChannelHandlerContext, TestWe
 
     @Override
     public TestWebResponse execute(ChannelHandlerContext role, TestWebRequest message) throws Exception {
-        System.out.println("res:" + message.getId());
+        System.out.println("res:" + message.getId() + "|" + message.getCmd());
         TestWebResponse res = new TestWebResponse();
         res.setCmd(10001);
         res.setRet("1");

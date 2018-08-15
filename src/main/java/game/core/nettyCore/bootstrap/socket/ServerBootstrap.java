@@ -40,11 +40,11 @@ public class ServerBootstrap extends CommonServer implements Runnable {
 	}
 
 	public void start() throws Exception {
-		super.start(serverDef.port, serverDef.channelInitializer);
+//		super.start(serverDef.port, serverDef.channelInitializer);
 	}
 
 	public void start(int bossThreads, int workThreads) throws Exception {
-		start(serverDef.port, serverDef.channelInitializer, bossThreads, workThreads);
+//		start(serverDef.port, serverDef.channelInitializer, bossThreads, workThreads);
 	}
 
 }

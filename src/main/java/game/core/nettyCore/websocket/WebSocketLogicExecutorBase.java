@@ -6,6 +6,9 @@ import game.core.nettyCore.IHandler;
 import game.core.nettyCore.http.HttpResponse;
 import game.core.nettyCore.http.HttpResponseMessage;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.util.MessageUtil;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,18 +52,14 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
                             if (cmd == 100) {//登陆请求
 
                             } else {
-                                r = handler.execute(ctx, msg);
+                                r = handler.execute(ctx, msg.getContent());
                             }
 
                             if (r == null || r instanceof Void) {
 
                             } else {
-                                HttpResponse rr = (HttpResponse) r;
-                                HttpResponseMessage res = new HttpResponseMessage();
-                                res.setCmd(cmd);
-                                res.setRet(rr.getRet());
-                                res.setData(r);
-//                                MessageUtil.sendHttpResponse(ctx, req, res);
+                                ByteBuf bb = Unpooled.wrappedBuffer("sfdsfsd".getBytes("utf-8"));
+                                MessageUtil.sendWebSocketResponse(ctx, bb);
                             }
                             if (executorCallBack != null) {
                                 executorCallBack.onHandleAfer(ctx, msg);

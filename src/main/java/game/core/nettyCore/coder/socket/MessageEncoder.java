@@ -30,7 +30,7 @@ public class MessageEncoder extends MessageToByteEncoder<Message> {
             logger.error("protocol is null");
             return;
         }
-        byte[] bb = protocol.encode(msg.getContent());
+        byte[] bb = protocol.encode(msg.getContent(),msg.getContent().getClass());
         int len = bb.length + MESSAGE_FRAME_SIZE;
         out.writeShort(len);
         out.writeShort(msg.getCmd());

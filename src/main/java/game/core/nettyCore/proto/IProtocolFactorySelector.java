@@ -5,8 +5,7 @@ import game.core.nettyCore.coder.ProtocolType;
 
 /**
  * @author nullzZ
- *
  */
 public interface IProtocolFactorySelector {
-	public IMessageProtocol getProtocol(ProtocolType type);
+    IMessageProtocol getProtocol(ProtocolType type);
 }

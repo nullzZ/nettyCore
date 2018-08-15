@@ -19,10 +19,7 @@ import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
 import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.coder.ProtocolType;
-import game.core.nettyCore.defaults.DefaultChannelInitializer;
 import game.core.nettyCore.proto.IProtocolFactorySelector;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.socket.SocketChannel;
 
 /**
  * 服务器定义
@@ -31,7 +28,6 @@ public class ServerDef {
 
     protected final String name;
     public final int port;
-    public ChannelInitializer<SocketChannel> channelInitializer;
     public final ProtocolType protocolType;
     public final IProtocolFactorySelector protocolFactorySelector;
     public final AbstractMessageLogicExecutorBase messageLogicExecutor;// logic
@@ -42,14 +38,13 @@ public class ServerDef {
     public final long clientIdleTimeout;
     public final IExecutorCallBack executorCallBack;
 
-    public ServerDef(String name, int port, ChannelInitializer<SocketChannel> channelInitializer, int maxFrameSize, int maxConnections,
+    public ServerDef(String name, int port, int maxFrameSize, int maxConnections,
                      long clientIdleTimeout,
                      AbstractMessageLogicExecutorBase messageLogicExecutor, IProtocolFactorySelector protocolFactorySelector,
                      ProtocolType protocolType, HandlerManager handlerManager,
                      IExecutorCallBack executorCallBack) {
         this.name = name;
         this.port = port;
-        this.channelInitializer = channelInitializer;
         this.messageLogicExecutor = messageLogicExecutor;
         this.protocolFactorySelector = protocolFactorySelector;
         this.protocolType = protocolType;

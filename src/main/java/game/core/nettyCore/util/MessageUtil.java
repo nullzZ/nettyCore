@@ -13,6 +13,7 @@ import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
+import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
 import static io.netty.handler.codec.http.HttpHeaderNames.CONTENT_TYPE;
@@ -56,14 +57,24 @@ public class MessageUtil {
         }
     }
 
-    public static void sendWebSocketResponse(ChannelHandlerContext ctx, HttpResponse msg) throws Exception {
+    public static void sendWebSocketResponse(ChannelHandlerContext ctx, Message msg) throws Exception {
         ByteBuf buf = null;
         try {
             if (msg != null) {
                 buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
                 ctx.channel().writeAndFlush(
-                        new TextWebSocketFrame(buf));
+                        new BinaryWebSocketFrame(buf));
             }
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
+    public static void sendWebSocketResponse(ChannelHandlerContext ctx, ByteBuf buf) throws Exception {
+        try {
+            ctx.channel().writeAndFlush(
+                    new BinaryWebSocketFrame(buf));
         } catch (Exception e) {
             throw e;
         }

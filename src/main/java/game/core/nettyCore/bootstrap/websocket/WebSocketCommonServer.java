@@ -1,9 +1,9 @@
 package game.core.nettyCore.bootstrap.websocket;
 
+import game.core.nettyCore.bootstrap.ICommonServer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -12,7 +12,7 @@ import io.netty.handler.logging.LoggingHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WebSocketCommonServer implements java.io.Closeable {
+public class WebSocketCommonServer implements java.io.Closeable, ICommonServer {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketCommonServer.class);
 
@@ -22,18 +22,26 @@ public class WebSocketCommonServer implements java.io.Closeable {
     private NioEventLoopGroup workerGroup;
     private ChannelFuture f;
 
+    @Override
     public void start(int port, ChannelInitializer<SocketChannel> channelInitializer) throws Exception {
         start(port, channelInitializer, bossThreadSize, workerThreadSize);
     }
 
+    @Override
     public void start(int port, ChannelInitializer<SocketChannel> channelInitializer, int bossThreads, int workThreads)
             throws Exception {
         try {
             ServerBootstrap b = new ServerBootstrap();
-            bossGroup = new NioEventLoopGroup(bossThreads, r -> {
+            if (bossThreads > 0) {
+                this.bossThreadSize = bossThreads;
+            }
+            if (workThreads > 0) {
+                this.workerThreadSize = workThreads;
+            }
+            bossGroup = new NioEventLoopGroup(bossThreadSize, r -> {
                 return new Thread(r, "netty_boss");
             });
-            workerGroup = new NioEventLoopGroup(workThreads, r -> {
+            workerGroup = new NioEventLoopGroup(workerThreadSize, r -> {
                 return new Thread(r, "netty_worker");
             });
             b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(channelInitializer);
@@ -62,6 +70,7 @@ public class WebSocketCommonServer implements java.io.Closeable {
         }
     }
 
+    @Override
     public void close() {
         logger.info("try shutdown NioEventLoopGroups.");
         try {

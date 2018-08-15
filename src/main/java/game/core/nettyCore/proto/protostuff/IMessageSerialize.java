@@ -1,4 +1,4 @@
-package game.core.nettyCore.coder;
+package game.core.nettyCore.proto.protostuff;
 
 import java.io.IOException;
 import java.io.InputStream;

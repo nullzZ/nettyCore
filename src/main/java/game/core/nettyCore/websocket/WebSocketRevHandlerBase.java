@@ -146,15 +146,17 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
             short cmd = byteBuf.readShort();
             byte[] body = new byte[len - 2];
             byteBuf.readBytes(body);
-
             IHandler handler = handlerManager.getHandler(cmd);
             if (handler == null) {
 //            MessageUtil.sendWebSocketResponse(ctx,);
                 logger.error("handler is null");
+                return;
             } else {
                 IMessageProtocol protocol = protocolFactorySelector.getProtocol(protocolType);
                 if (protocol == null) {
                     logger.error("protocol is null");
+                    handshaker.close(ctx.channel(),
+                            (CloseWebSocketFrame) frame.retain());
                     return;
                 }
                 Message mes = Message.newBuilder().cmd(cmd)
@@ -164,6 +166,8 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
             }
         } catch (Exception e) {
             logger.error("网络异常", e);
+            handshaker.close(ctx.channel(),
+                    (CloseWebSocketFrame) frame.retain());
         }
     }
 
