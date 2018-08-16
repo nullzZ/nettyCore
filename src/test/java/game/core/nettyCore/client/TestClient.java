@@ -21,7 +21,7 @@ public class TestClient {
             Thread.sleep(2000);
             TestRequest req = new TestRequest();
             req.setId(666);
-            Message msg = Message.newBuilder().cmd(10001)
+            Message msg = Message.newBuilder().cmd((short) 10001)
                     .message(req).build();
 
 //            b.sendMessage(msg);

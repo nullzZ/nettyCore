@@ -1,8 +1,9 @@
 package game.core.nettyCore.coder.socket;
 
-import game.core.nettyCore.serverDef.ServerDef;
 import game.core.nettyCore.coder.IMessageProtocol;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.proto.ProtocolFactorySelector;
+import game.core.nettyCore.serverDef.ServerDef;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -69,11 +70,11 @@ public class MessageDecoder extends ByteToMessageDecoder {
 
             // byte version = in.readByte();// 版本
             // byte serializeType = in.readByte();// 序列化类型
-            int cmd = in.readShort();
+            short cmd = in.readShort();
             byte[] body = new byte[contentLen];
             in.readBytes(body);
 
-            IMessageProtocol protocol = serverDef.protocolFactorySelector.getProtocol(serverDef.protocolType);
+            IMessageProtocol protocol = ProtocolFactorySelector.getInstance().getProtocol(serverDef.protocolType);
             if (protocol == null) {
                 logger.error("protocol is null");
                 return;

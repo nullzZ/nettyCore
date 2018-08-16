@@ -2,8 +2,6 @@ package game.core.nettyCore.http;
 
 import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.coder.ProtocolType;
-import game.core.nettyCore.defaults.DefaultProtocolFactorySelectorFactory;
-import game.core.nettyCore.proto.ProtocolFactorySelectorFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -16,7 +14,7 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
     private int maxConnections;
     //    private ChannelInitializer<SocketChannel> channelInitializer;// hasDefault
     private long clientIdleTimeout;// hasDefault
-    private ProtocolFactorySelectorFactory protocolFactorySelectorFactory;//
+    //private ProtocolFactorySelectorFactory protocolFactorySelectorFactory;//
     // hasDefault
     private ProtocolType protocolType;
     private AbstractHttpMessageLogicExecutorBase messageLogicExecutor;// hasDefault
@@ -58,11 +56,11 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
         return (T) this;
     }
 
-    @SuppressWarnings("unchecked")
-    public T protocolFactorySelectorFactory(ProtocolFactorySelectorFactory protocolFactorySelectorFactory) {
-        this.protocolFactorySelectorFactory = protocolFactorySelectorFactory;
-        return (T) this;
-    }
+//    @SuppressWarnings("unchecked")
+//    public T protocolFactorySelectorFactory(ProtocolFactorySelectorFactory protocolFactorySelectorFactory) {
+//        this.protocolFactorySelectorFactory = protocolFactorySelectorFactory;
+//        return (T) this;
+//    }
 
     /**
      * hanlder存放的包名
@@ -98,9 +96,9 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
         // checkState(maxConnections >= 0, "maxConnections should be 0 (for
         // unlimited) or positive");
 
-        if (protocolFactorySelectorFactory == null) {
-            protocolFactorySelectorFactory = new DefaultProtocolFactorySelectorFactory();
-        }
+//        if (protocolFactorySelectorFactory == null) {
+////            protocolFactorySelectorFactory = new DefaultProtocolFactorySelectorFactory();
+//        }
 
         if (messageLogicExecutor == null) {
             this.messageLogicExecutor = new HttpMessageLogicExecutorBase(executorCallBack);

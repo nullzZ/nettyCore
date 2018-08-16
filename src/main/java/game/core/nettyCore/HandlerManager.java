@@ -5,7 +5,6 @@ import game.core.nettyCore.util.ClassUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -18,33 +17,26 @@ import java.util.Map;
 public class HandlerManager {
     private static final Logger logger = LoggerFactory.getLogger(HandlerManager.class);
     @SuppressWarnings("rawtypes")
-    private Map<Integer, IHandler> hanlers = new HashMap<>();
-    private Map<Integer, Class<?>> messageClazz = new HashMap<>();
+    private Map<Short, IHandler> handlers = new HashMap<>();
+    private Map<Short, Class<?>> messageClazz = new HashMap<>();
+    private Map<Short, String> handlersName = new HashMap<>();
     private boolean isSpring;
 
     @SuppressWarnings("rawtypes")
     public void init(String packageName, boolean isSpring) throws Exception {
+        this.isSpring = isSpring;
         List<Class<?>> clazzs = ClassUtil.getClasses(packageName);
         for (Class<?> c : clazzs) {
             HandlerAnnotation ann = c.getAnnotation(HandlerAnnotation.class);
             if (ann != null) {
                 Object obj = c.newInstance();
-                // Field f = c.getSuperclass().getDeclaredField("message");
-                // f.setAccessible(true);
-                // f.set(obj, ann.messageClass());
-//                messageClazz.put(ann.id(), ann.messageClass());
-                hanlers.put(ann.id(), (IHandler) obj);
+                handlers.put(ann.id(), (IHandler) obj);
+                handlersName.put(ann.id(), toLowerCaseFirstOne(obj.getClass().getSimpleName()));
                 logger.debug("加载handler:--" + c.getName());
                 for (Type type : c.getGenericInterfaces()) {
                     if (type instanceof ParameterizedType) {
                         Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();
                         messageClazz.put(ann.id(), Class.forName(actualTypeArguments[1].getTypeName()));
-//                        for (Type type2 : actualTypeArguments) {
-//
-//                            System.out.println("泛型参数类型：" + type2);
-//                            Class cc = Class.forName(type2.getTypeName());
-//                            System.out.println("@" + cc);
-//                        }
                     }
                 }
 
@@ -54,17 +46,25 @@ public class HandlerManager {
     }
 
     @SuppressWarnings("rawtypes")
-    public IHandler getHandler(int id) {
-        IHandler handler = hanlers.get(id);
+    public IHandler getHandler(short id) {
+        String name = handlersName.get(id);
+        IHandler handler;
         if (isSpring) {
-            SpringContextUtil.getBean(toLowerCaseFirstOne(handler.getClass().getSimpleName()));
+            handler = (IHandler) SpringContextUtil.getBean(name);
+        } else {
+            handler = handlers.get(id);
         }
         return handler;
     }
 
-    public Class<?> getMessageClazz(int id) {
+    public String getHandlerName(short id) {
+        return handlersName.get(id);
+    }
+
+    public Class<?> getMessageClazz(short id) {
         return messageClazz.get(id);
     }
+
 
     //首字母转小写
     private String toLowerCaseFirstOne(String s) {

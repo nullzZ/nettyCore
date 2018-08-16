@@ -29,7 +29,6 @@ public class ServerDef {
     protected final String name;
     public final int port;
     public final ProtocolType protocolType;
-    public final IProtocolFactorySelector protocolFactorySelector;
     public final AbstractMessageLogicExecutorBase messageLogicExecutor;// logic
     public final HandlerManager handlerManager;
 
@@ -40,13 +39,12 @@ public class ServerDef {
 
     public ServerDef(String name, int port, int maxFrameSize, int maxConnections,
                      long clientIdleTimeout,
-                     AbstractMessageLogicExecutorBase messageLogicExecutor, IProtocolFactorySelector protocolFactorySelector,
+                     AbstractMessageLogicExecutorBase messageLogicExecutor,
                      ProtocolType protocolType, HandlerManager handlerManager,
                      IExecutorCallBack executorCallBack) {
         this.name = name;
         this.port = port;
         this.messageLogicExecutor = messageLogicExecutor;
-        this.protocolFactorySelector = protocolFactorySelector;
         this.protocolType = protocolType;
         this.handlerManager = handlerManager;
         this.maxFrameSize = maxFrameSize;

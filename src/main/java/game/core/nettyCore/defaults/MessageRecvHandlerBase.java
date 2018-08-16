@@ -38,7 +38,7 @@ public class MessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Message mes = (Message) msg;
         if (mes.getCmd() == 1) {
-            MessageUtil.sendTcpMsg(ctx,1,Message.newBuilder().cmd(1).build());
+            MessageUtil.sendTcpMsg(ctx, (short) 1,Message.newBuilder().cmd((short) 1).build());
             return;
         }
         IHandler handler = serverDef.handlerManager.getHandler(mes.getCmd());

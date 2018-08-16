@@ -1,61 +1,52 @@
 package game.core.nettyCore.util;
 
-import com.alibaba.fastjson.JSON;
-import com.baidu.bjf.remoting.protobuf.Codec;
-import com.baidu.bjf.remoting.protobuf.ProtobufProxy;
-import game.core.nettyCore.model.Message;
+import game.core.nettyCore.coder.IMessageProtocol;
+import game.core.nettyCore.coder.ProtocolType;
+import game.core.nettyCore.proto.ProtocolFactorySelector;
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.DefaultFullHttpResponse;
-import io.netty.handler.codec.http.FullHttpRequest;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 
-import static io.netty.handler.codec.http.HttpHeaderNames.CONTENT_TYPE;
-import static io.netty.handler.codec.http.HttpVersion.HTTP_1_1;
-
 public class WebSocketMessageUtil {
+    private static final short HEAD_LEN = 2;
 
+    public static <T> void sendByJPB(ChannelHandlerContext ctx, short cmd, T msg) throws Exception {
+        sendByProtocolType(ctx, cmd, msg, ProtocolType.JPROTOBUFF);
+    }
 
-    public static <T> void sendByJson(ChannelHandlerContext ctx, short cmd, T msg) throws Exception {
+    public static <T> void sendByJPB(ChannelHandlerContext ctx, short cmd) throws Exception {
+        sendByProtocolType(ctx, cmd, null, ProtocolType.JPROTOBUFF);
+    }
+
+    public static <T> void sendByProtocolType(ChannelHandlerContext ctx, short cmd, ProtocolType protocolType) throws Exception {
+        sendByProtocolType(ctx, cmd, null, protocolType);
+    }
+
+    public static <T> void sendByProtocolType(ChannelHandlerContext ctx, short cmd, T msg, ProtocolType protocolType) throws Exception {
         ByteBuf buf = null;
         try {
+            int len = HEAD_LEN;
+            byte[] bb = null;
             if (msg != null) {
-                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
-                ctx.channel().writeAndFlush(
-                        new BinaryWebSocketFrame(buf));
+                IMessageProtocol protocol = ProtocolFactorySelector.getInstance().getProtocol(protocolType);
+                bb = protocol.encode(msg);
+                len += bb.length;
             }
-        } catch (Exception e) {
-            throw e;
-        }
-    }
 
-    public static void sendByJson(ChannelHandlerContext ctx, Message msg) throws Exception {
-        ByteBuf buf = null;
-        try {
-            if (msg != null) {
-                buf = Unpooled.wrappedBuffer(JSON.toJSONBytes(msg));
-                ctx.channel().writeAndFlush(
-                        new BinaryWebSocketFrame(buf));
+            buf = PooledByteBufAllocator.DEFAULT.directBuffer(len);
+            buf.writeShort(cmd);
+            if (msg != null && bb != null) {
+                buf.writeBytes(bb);
             }
+            ctx.channel().writeAndFlush(new BinaryWebSocketFrame(buf));
+
         } catch (Exception e) {
             throw e;
+        } finally {
+//            if (buf != null) {
+//                buf.release();
+//            }
         }
     }
-
-
-    public static void sendWebSocketResponse(ChannelHandlerContext ctx, ByteBuf buf) throws Exception {
-        try {
-            ctx.channel().writeAndFlush(
-                    new BinaryWebSocketFrame(buf));
-        } catch (Exception e) {
-            throw e;
-        }
-
-    }
-
 }

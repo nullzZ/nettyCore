@@ -9,6 +9,7 @@ import game.core.nettyCore.http.webSocket.SessionManager;
 import game.core.nettyCore.http.webSocket.WebSocketSession;
 import game.core.nettyCore.model.Message;
 import game.core.nettyCore.proto.IProtocolFactorySelector;
+import game.core.nettyCore.proto.ProtocolFactorySelector;
 import game.core.nettyCore.serverDef.ServerDef;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -35,15 +36,13 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
 
     private final AbstractMessageLogicExecutorBase messageLogicExecutor;
     private final HandlerManager handlerManager;
-    private final IProtocolFactorySelector protocolFactorySelector;
     private final ProtocolType protocolType;
 
     public WebSocketRevHandlerBase(AbstractMessageLogicExecutorBase messageLogicExecutor,
-                                   HandlerManager handlerManager, IProtocolFactorySelector protocolFactorySelector,
+                                   HandlerManager handlerManager,
                                    ProtocolType protocolType) {
         this.messageLogicExecutor = messageLogicExecutor;
         this.handlerManager = handlerManager;
-        this.protocolFactorySelector = protocolFactorySelector;
         this.protocolType = protocolType;
     }
 
@@ -152,7 +151,7 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
                 logger.error("handler is null");
                 return;
             } else {
-                IMessageProtocol protocol = protocolFactorySelector.getProtocol(protocolType);
+                IMessageProtocol protocol = ProtocolFactorySelector.getInstance().getProtocol(protocolType);
                 if (protocol == null) {
                     logger.error("protocol is null");
                     handshaker.close(ctx.channel(),

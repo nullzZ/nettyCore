@@ -15,8 +15,8 @@ import java.util.Map;
 public class HttpHandlerManager {
     private static final Logger logger = LoggerFactory.getLogger(HttpHandlerManager.class);
     @SuppressWarnings("rawtypes")
-    private Map<Integer, IHttpHandler> hanlers = new HashMap<>();
-    private Map<Integer, Class<?>> messageClazz = new HashMap<>();
+    private Map<Short, IHttpHandler> hanlers = new HashMap<>();
+    private Map<Short, Class<?>> messageClazz = new HashMap<>();
 
     @SuppressWarnings("rawtypes")
     public void init(String packageName) throws Exception {
@@ -37,11 +37,11 @@ public class HttpHandlerManager {
     }
 
     @SuppressWarnings("rawtypes")
-    public IHttpHandler getHandler(int id) {
+    public IHttpHandler getHandler(short id) {
         return hanlers.get(id);
     }
 
-    public Class<?> getMessageClazz(int id) {
+    public Class<?> getMessageClazz(short id) {
         return messageClazz.get(id);
     }
 

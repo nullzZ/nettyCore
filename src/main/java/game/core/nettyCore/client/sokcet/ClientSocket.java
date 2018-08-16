@@ -96,7 +96,7 @@ public class ClientSocket {
                 while (true) {
                     if (connectStatus) {
                         try {
-                            sendMessage(1, Message.newBuilder().cmd(1).build(), null);
+                            sendMessage(1, Message.newBuilder().cmd((short) 1).build(), null);
                         } catch (Exception e) {
                             connectStatus = false;
                             logger.error("服务器断开连接", e);

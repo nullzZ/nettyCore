@@ -3,8 +3,6 @@ package game.core.nettyCore.client;
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
 import game.core.nettyCore.coder.ProtocolType;
-import game.core.nettyCore.defaults.DefaultProtocolFactorySelectorFactory;
-import game.core.nettyCore.proto.ProtocolFactorySelectorFactory;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 
@@ -19,7 +17,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
     private int maxFrameSize = MAX_FRAME_SIZE;
     private ChannelInitializer<SocketChannel> channelInitializer;// hasDefault
     private long clientIdleTimeout;// hasDefault
-    private ProtocolFactorySelectorFactory protocolFactorySelectorFactory;//
+
     // hasDefault
     private ProtocolType protocolType;
     private AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
@@ -67,11 +65,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
         return (T) this;
     }
 
-    @SuppressWarnings("unchecked")
-    public T protocolFactorySelectorFactory(ProtocolFactorySelectorFactory protocolFactorySelectorFactory) {
-        this.protocolFactorySelectorFactory = protocolFactorySelectorFactory;
-        return (T) this;
-    }
+
 
     @SuppressWarnings("unchecked")
     public T messageLogicExecutor(AbstractMessageLogicExecutorBase messageLogicExecutor) {
@@ -131,10 +125,6 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
         checkState(protocolType != null, "potocolType not defined!");
 
 
-        if (protocolFactorySelectorFactory == null) {
-            protocolFactorySelectorFactory = new DefaultProtocolFactorySelectorFactory();
-        }
-
         try {
             this.handlerManager = new HandlerManager();
             this.handlerManager.init(hanlderPackageName, isSpring);
@@ -142,7 +132,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
             e.printStackTrace();
         }
         return new ClientDef(name, host, port, maxFrameSize, channelInitializer, clientIdleTimeout,
-                messageLogicExecutor, protocolFactorySelectorFactory.createProtocolFactorySelector(), protocolType,
+                messageLogicExecutor, protocolType,
                 handlerManager, clientIdleTimeout > 0);
     }
 

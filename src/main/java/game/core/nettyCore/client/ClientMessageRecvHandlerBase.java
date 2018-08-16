@@ -64,7 +64,7 @@ public class ClientMessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
                 if (IdleStateEvent.class.isAssignableFrom(evt.getClass())) {
                     IdleStateEvent event = (IdleStateEvent) evt;
                     if (event.state() == IdleState.WRITER_IDLE) {
-                        Message heartMsg = Message.newBuilder().cmd(1).build();
+                        Message heartMsg = Message.newBuilder().cmd((short) 1).build();
                         ctx.writeAndFlush(heartMsg);
                     }
                 }

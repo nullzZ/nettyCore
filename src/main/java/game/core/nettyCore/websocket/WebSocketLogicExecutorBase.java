@@ -1,14 +1,12 @@
 package game.core.nettyCore.websocket;
 
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.CMD;
 import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.IHandler;
-import game.core.nettyCore.http.HttpResponse;
-import game.core.nettyCore.http.HttpResponseMessage;
+import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.model.Message;
-import game.core.nettyCore.util.MessageUtil;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import game.core.nettyCore.util.WebSocketMessageUtil;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,10 +30,12 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
             return new Thread(r, "WebSocketLogicExecutor" + id.getAndAdd(1));
         }
     });
-    public IExecutorCallBack executorCallBack;
+    private IExecutorCallBack executorCallBack;
+    private ProtocolType protocolType;
 
-    public WebSocketLogicExecutorBase(IExecutorCallBack executorCallBack) {
+    public WebSocketLogicExecutorBase(ProtocolType protocolType, IExecutorCallBack executorCallBack) {
         this.executorCallBack = executorCallBack;
+        this.protocolType = protocolType;
     }
 
     @Override
@@ -48,18 +48,16 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
                                 executorCallBack.onHandleBefor(ctx, msg);
                             }
                             Object r = null;
-                            int cmd = msg.getCmd();
+                            short cmd = msg.getCmd();
                             if (cmd == 100) {//登陆请求
 
                             } else {
                                 r = handler.execute(ctx, msg.getContent());
                             }
 
-                            if (r == null || r instanceof Void) {
-
-                            } else {
-                                ByteBuf bb = Unpooled.wrappedBuffer("sfdsfsd".getBytes("utf-8"));
-                                MessageUtil.sendWebSocketResponse(ctx, bb);
+                            if (r != null && !(r instanceof Void)) {
+//                                Message m = Message.newBuilder().cmd((short) 10001).message(new Object()).build();
+                                WebSocketMessageUtil.sendByProtocolType(ctx, cmd, r, protocolType);
                             }
                             if (executorCallBack != null) {
                                 executorCallBack.onHandleAfer(ctx, msg);
@@ -70,6 +68,11 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
                             }
                         } catch (Throwable e) {
                             logger.error("logic 异常-", e);
+                            try {
+                                WebSocketMessageUtil.sendByProtocolType(ctx, CMD.ERROR, protocolType);
+                            } catch (Exception e1) {
+                                logger.error("logic 异常-", e);
+                            }
                         }
                     }
             );

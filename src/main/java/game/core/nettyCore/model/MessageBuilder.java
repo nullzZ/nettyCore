@@ -2,10 +2,10 @@ package game.core.nettyCore.model;
 
 public class MessageBuilder {
 
-    private int cmd;
+    private short cmd;
     private Object message;
 
-    public MessageBuilder cmd(int cmd) {
+    public MessageBuilder cmd(short cmd) {
         this.cmd = cmd;
         return this;
     }

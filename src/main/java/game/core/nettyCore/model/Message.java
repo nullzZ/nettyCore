@@ -5,15 +5,15 @@ package game.core.nettyCore.model;
  */
 public class Message {
 
-    private int cmd;
+    private short cmd;
     private Object content;
 
-    public Message(int cmd, Object message) {
+    public Message(short cmd, Object message) {
         this.cmd = cmd;
         this.content = message;
     }
 
-    public int getCmd() {
+    public short getCmd() {
         return cmd;
     }
 

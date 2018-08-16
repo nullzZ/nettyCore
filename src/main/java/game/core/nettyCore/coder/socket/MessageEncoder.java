@@ -1,8 +1,9 @@
 package game.core.nettyCore.coder.socket;
 
-import game.core.nettyCore.serverDef.ServerDef;
 import game.core.nettyCore.coder.IMessageProtocol;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.proto.ProtocolFactorySelector;
+import game.core.nettyCore.serverDef.ServerDef;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
@@ -25,7 +26,7 @@ public class MessageEncoder extends MessageToByteEncoder<Message> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Message msg, ByteBuf out) throws Exception {
-        IMessageProtocol protocol = serverDef.protocolFactorySelector.getProtocol(serverDef.protocolType);
+        IMessageProtocol protocol = ProtocolFactorySelector.getInstance().getProtocol(serverDef.protocolType);
         if (protocol == null) {
             logger.error("protocol is null");
             return;

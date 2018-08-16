@@ -93,7 +93,7 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                     //logger.debug("普通HTTP请求COTENT！！！！！！！！！！");
                     ByteBuf buf = Unpooled.copiedBuffer(req.content());
                     JSONObject jo = JSON.parseObject(buf.array(), JSONObject.class);
-                    int cmd = jo.getInteger("cmd");
+                    short cmd = jo.getShort("cmd");
                     String token = jo.getString("token");
                     String dd = "{}";
                     if (jo.containsKey("data")) {

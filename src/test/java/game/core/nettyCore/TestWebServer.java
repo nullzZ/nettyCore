@@ -1,6 +1,7 @@
 package game.core.nettyCore;
 
 import game.core.nettyCore.bootstrap.socket.ServerBootstrap;
+import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.serverDef.ServerDef;
 
 /**
@@ -13,7 +14,7 @@ public class TestWebServer {
         try {
             //PropertyConfigurator.configure("E:\\nettyCore\\src\\test\\resources\\log4j.xml");
             int port = 9090;
-            ServerDef serverDef = ServerDef.newBuilder().listen(port)
+            ServerDef serverDef = ServerDef.newBuilder().listen(port).protocolType(ProtocolType.JPROTOBUFF)
                     .handlerPackage("game.core.nettyCore.test").build();
             @SuppressWarnings("resource")
             ServerBootstrap server = new ServerBootstrap(serverDef);

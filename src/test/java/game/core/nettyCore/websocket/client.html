@@ -32,7 +32,7 @@
         }
 
         function sendMsg(msg) { //发送消息
-            var con = "{'id':1,'cmd':1000}";
+            var con = "{'id':10001,'cmd':1000}";
             var bf = new ArrayBuffer(2 + con.length * 2);
             var dv = new DataView(bf);
             var writePos = 0;

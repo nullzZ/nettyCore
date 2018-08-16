@@ -8,8 +8,7 @@ import com.baidu.bjf.remoting.protobuf.annotation.Protobuf;
  *
  */
 
-public class TestRequestPb {
-
+public class TestResponsePb {
 	@Protobuf(fieldType=FieldType.INT32, order=1, required=false)
 	public int id;
 

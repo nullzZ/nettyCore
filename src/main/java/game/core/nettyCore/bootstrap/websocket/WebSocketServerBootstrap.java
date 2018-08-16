@@ -37,10 +37,10 @@ public class WebSocketServerBootstrap extends WebSocketCommonServer implements I
     public void start(int bossThreads, int workThreads) throws Exception {
         if (serverDef.messageLogicExecutor != null) {
             super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef.messageLogicExecutor,
-                    serverDef.handlerManager, serverDef.protocolFactorySelector, serverDef.protocolType));
+                    serverDef.handlerManager, serverDef.protocolType));
         } else {
             super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef.handlerManager,
-                            serverDef.protocolFactorySelector, serverDef.protocolType, serverDef.executorCallBack),
+                            serverDef.protocolType, serverDef.executorCallBack),
                     bossThreads, workThreads);
         }
     }
