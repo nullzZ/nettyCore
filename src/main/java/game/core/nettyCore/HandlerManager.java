@@ -1,6 +1,5 @@
 package game.core.nettyCore;
 
-import game.core.nettyCore.spring.SpringContextUtil;
 import game.core.nettyCore.util.ClassUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,9 +47,9 @@ public class HandlerManager {
     @SuppressWarnings("rawtypes")
     public IHandler getHandler(short id) {
         String name = handlersName.get(id);
-        IHandler handler;
+        IHandler handler = null;
         if (isSpring) {
-            handler = (IHandler) SpringContextUtil.getBean(name);
+//            handler = (IHandler) SpringContextUtil.getBean(name);
         } else {
             handler = handlers.get(id);
         }
