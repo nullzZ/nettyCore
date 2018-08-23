@@ -1,16 +1,13 @@
 package game.core.nettyCore.websocket;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
-import game.core.nettyCore.HandlerManager;
-import game.core.nettyCore.IHandler;
+import game.core.nettyCore.*;
 import game.core.nettyCore.coder.IMessageProtocol;
 import game.core.nettyCore.coder.ProtocolType;
-import game.core.nettyCore.http.webSocket.SessionManager;
-import game.core.nettyCore.http.webSocket.WebSocketSession;
 import game.core.nettyCore.model.Message;
-import game.core.nettyCore.proto.IProtocolFactorySelector;
 import game.core.nettyCore.proto.ProtocolFactorySelector;
-import game.core.nettyCore.serverDef.ServerDef;
+import game.core.nettyCore.session.Session;
+import game.core.nettyCore.session.SessionManager;
+import game.core.nettyCore.util.WebSocketMessageUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
@@ -35,16 +32,20 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
 //    private final ServerDef serverDef;
 
     private final AbstractMessageLogicExecutorBase messageLogicExecutor;
+
+    public IHandlerListener listener;
     private final HandlerManager handlerManager;
     private final ProtocolType protocolType;
 
     public WebSocketRevHandlerBase(AbstractMessageLogicExecutorBase messageLogicExecutor,
                                    HandlerManager handlerManager,
-                                   ProtocolType protocolType) {
+                                   ProtocolType protocolType, IHandlerListener listener) {
         this.messageLogicExecutor = messageLogicExecutor;
         this.handlerManager = handlerManager;
         this.protocolType = protocolType;
+        this.listener = listener;
     }
+
 
 //    public WebSocketRevHandlerBase(ServerDef serverDef) {
 //        this.serverDef = serverDef;
@@ -53,6 +54,17 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
 //        this.protocolFactorySelector = serverDef.protocolFactorySelector;
 //        this.protocolType = serverDef.protocolType;
 //    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        super.channelActive(ctx);
+        Session session = new Session(ctx);
+        SessionManager.put(ctx, session);
+        if (listener != null) {
+            listener.onConnect(session);
+
+        }
+    }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -68,6 +80,24 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
         } catch (Exception e) {
             logger.error("service error", e);
         }
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        super.channelInactive(ctx);
+        Session session = SessionManager.remove(ctx);
+        if (listener != null) {
+            listener.onClose(session);
+        }
+
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+            throws Exception {
+        SessionManager.remove(ctx);
+        cause.printStackTrace();
+        ctx.close();
     }
 
     @Override
@@ -93,9 +123,6 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
                 } else {
                     logger.debug("websocket握手成功！！！！！！！！！！");
                     handshaker.handshake(ctx.channel(), req);//把握手消息返回给客户端
-                    WebSocketSession session = new WebSocketSession();
-                    session.setCtx(ctx);
-                    SessionManager.put(ctx, session);
                 }
             } else {//正常http请求
                 logger.error("非websocket请求");
@@ -120,6 +147,7 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
         try {
             // 判断是否是关闭链路的指令
             if (frame instanceof CloseWebSocketFrame) {
+                SessionManager.remove(ctx);
                 handshaker.close(ctx.channel(),
                         (CloseWebSocketFrame) frame.retain());
                 return;
@@ -147,7 +175,7 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
             byteBuf.readBytes(body);
             IHandler handler = handlerManager.getHandler(cmd);
             if (handler == null) {
-//            MessageUtil.sendWebSocketResponse(ctx,);
+                WebSocketMessageUtil.sendByProtocolType(ctx, CMD.ERROR, protocolType);
                 logger.error("handler is null");
                 return;
             } else {
@@ -156,12 +184,18 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
                     logger.error("protocol is null");
                     handshaker.close(ctx.channel(),
                             (CloseWebSocketFrame) frame.retain());
+                    WebSocketMessageUtil.sendByProtocolType(ctx, CMD.ERROR, protocolType);
+                    return;
+                }
+                Session session = SessionManager.get(ctx);
+                if (session == null) {
+                    logger.error("session is null");
+                    WebSocketMessageUtil.sendByProtocolType(ctx, CMD.ERROR, protocolType);
                     return;
                 }
                 Message mes = Message.newBuilder().cmd(cmd)
                         .message(protocol.decode(body, handlerManager.getMessageClazz(cmd))).build();
-
-                messageLogicExecutor.execute(handler, ctx, mes);
+                messageLogicExecutor.execute(handler, session, mes);
             }
         } catch (Exception e) {
             logger.error("网络异常", e);
@@ -198,11 +232,5 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
         }
     }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-            throws Exception {
-        cause.printStackTrace();
-        ctx.close();
-    }
 
 }

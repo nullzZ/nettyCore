@@ -1,7 +1,7 @@
 package game.core.nettyCore;
 
-import io.netty.channel.ChannelHandlerContext;
+import game.core.nettyCore.session.Session;
 
-public interface IResultHandler<R extends ChannelHandlerContext, M, S> extends IHandler<R, M, S> {
+public interface IResultHandler<R extends Session, M, S> extends IHandler<R, M, S> {
 
 }

@@ -3,6 +3,8 @@ package game.core.nettyCore.client;
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.session.Session;
+import game.core.nettyCore.session.SessionManager;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleState;
@@ -34,12 +36,13 @@ public class ClientMessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         try {
             Message mes = (Message) msg;
-            if(mes.getCmd()==1){
+            if (mes.getCmd() == 1) {
                 return;
             }
             IHandler handler = clientDef.handlerManager.getHandler(mes.getCmd());
+            Session session = SessionManager.get(ctx);
             if (handler != null) {
-                messageLogicExecutor.execute(handler, ctx, mes);
+                messageLogicExecutor.execute(handler, session, mes);
             } else {
                 logger.error("logic 异常-handler is null|cmd=" + mes.getCmd());
             }

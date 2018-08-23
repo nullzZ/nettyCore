@@ -3,6 +3,7 @@ package game.core.nettyCore.websocket;
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
 import game.core.nettyCore.IExecutorCallBack;
+import game.core.nettyCore.IHandlerListener;
 import game.core.nettyCore.coder.ProtocolType;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -16,6 +17,7 @@ public class DefaultWebSocketChannelInstaller extends ChannelInitializer<SocketC
     private final AbstractMessageLogicExecutorBase messageLogicExecutor;
     private final HandlerManager handlerManager;
     private final ProtocolType protocolType;
+    private IHandlerListener listener;
 
     public DefaultWebSocketChannelInstaller(HandlerManager handlerManager,
                                             ProtocolType protocolType, IExecutorCallBack executorCallBack) {
@@ -26,10 +28,11 @@ public class DefaultWebSocketChannelInstaller extends ChannelInitializer<SocketC
 
     public DefaultWebSocketChannelInstaller(AbstractMessageLogicExecutorBase messageLogicExecutor,
                                             HandlerManager handlerManager,
-                                            ProtocolType protocolType) {
+                                            ProtocolType protocolType, IHandlerListener listener) {
         this.messageLogicExecutor = messageLogicExecutor;
         this.handlerManager = handlerManager;
         this.protocolType = protocolType;
+        this.listener = listener;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class DefaultWebSocketChannelInstaller extends ChannelInitializer<SocketC
         pipeline.addLast("handler",
                 new WebSocketRevHandlerBase(messageLogicExecutor,
                         handlerManager,
-                        protocolType));
+                        protocolType, listener));
 
 
     }

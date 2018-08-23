@@ -4,6 +4,8 @@ import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.serverDef.ServerDef;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.session.Session;
+import game.core.nettyCore.session.SessionManager;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -43,7 +45,8 @@ public class MessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
         }
         IHandler handler = serverDef.handlerManager.getHandler(mes.getCmd());
         if (handler != null) {
-            messageLogicExecutor.execute(handler, ctx, mes);
+            Session session = SessionManager.get(ctx);
+            messageLogicExecutor.execute(handler, session, mes);
         } else {
             logger.error("logic 异常-handler is null|cmd=" + mes.getCmd());
         }

@@ -6,6 +6,8 @@ import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.session.Session;
+import game.core.nettyCore.session.SessionManager;
 import game.core.nettyCore.util.WebSocketMessageUtil;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
@@ -30,7 +32,7 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
             return new Thread(r, "WebSocketLogicExecutor" + id.getAndAdd(1));
         }
     });
-    private IExecutorCallBack executorCallBack;
+    public IExecutorCallBack executorCallBack;
     private ProtocolType protocolType;
 
     public WebSocketLogicExecutorBase(ProtocolType protocolType, IExecutorCallBack executorCallBack) {
@@ -39,28 +41,28 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
     }
 
     @Override
-    public void execute(IHandler handler, ChannelHandlerContext ctx, Message msg) {
+    public void execute(IHandler handler, Session session, Message msg) {
         if (handler != null) {
             es.execute(() -> {
                         try {
                             long now = System.currentTimeMillis();
                             if (executorCallBack != null) {
-                                executorCallBack.onHandleBefor(ctx, msg);
+                                executorCallBack.onHandleBefor(session.getCtx(), msg);
                             }
                             Object r = null;
                             short cmd = msg.getCmd();
                             if (cmd == 100) {//登陆请求
 
                             } else {
-                                r = handler.execute(ctx, msg.getContent());
+                                r = handler.execute(session, msg.getContent());
                             }
 
                             if (r != null && !(r instanceof Void)) {
 //                                Message m = Message.newBuilder().cmd((short) 10001).message(new Object()).build();
-                                WebSocketMessageUtil.sendByProtocolType(ctx, cmd, r, protocolType);
+                                WebSocketMessageUtil.sendByProtocolType(session.getCtx(), cmd, r, protocolType);
                             }
                             if (executorCallBack != null) {
-                                executorCallBack.onHandleAfer(ctx, msg);
+                                executorCallBack.onHandleAfer(session.getCtx(), msg);
                             }
                             long time = System.currentTimeMillis() - now;
                             if (time > 300) {
@@ -69,7 +71,7 @@ public class WebSocketLogicExecutorBase implements AbstractMessageLogicExecutorB
                         } catch (Throwable e) {
                             logger.error("logic 异常-", e);
                             try {
-                                WebSocketMessageUtil.sendByProtocolType(ctx, CMD.ERROR, protocolType);
+                                WebSocketMessageUtil.sendByProtocolType(session.getCtx(), CMD.ERROR, protocolType);
                             } catch (Exception e1) {
                                 logger.error("logic 异常-", e);
                             }

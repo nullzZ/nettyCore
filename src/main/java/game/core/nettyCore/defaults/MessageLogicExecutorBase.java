@@ -4,6 +4,7 @@ import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.session.Session;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
@@ -35,22 +36,22 @@ public class MessageLogicExecutorBase implements AbstractMessageLogicExecutorBas
     }
 
     @Override
-    public void execute(IHandler handler, ChannelHandlerContext ctx, Message msg) {
+    public void execute(IHandler handler, Session session, Message msg) {
         if (handler != null) {
             es.execute(() -> {
                         try {
                             if (executorCallBack != null) {
-                                executorCallBack.onHandleBefor(ctx, msg);
+                                executorCallBack.onHandleBefor(session.getCtx(), msg);
                             }
-                            Object r = handler.execute(ctx, msg.getContent());
+                            Object r = handler.execute(session, msg.getContent());
                             if (r == null || r instanceof Void) {
 
                             } else {
                                 //Message res = Message.newBuilder().cmd(msg.getCmd()).message(r).build();
-                                MessageUtil.sendTcpMsg(ctx, msg.getCmd(), r);
+                                MessageUtil.sendTcpMsg(session.getCtx(), msg.getCmd(), r);
                             }
                             if (executorCallBack != null) {
-                                executorCallBack.onHandleAfer(ctx, msg);
+                                executorCallBack.onHandleAfer(session.getCtx(), msg);
                             }
                         } catch (Throwable e) {
                             logger.error("logic 异常-", e);

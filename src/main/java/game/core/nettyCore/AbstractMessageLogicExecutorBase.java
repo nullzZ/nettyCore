@@ -1,14 +1,14 @@
 package game.core.nettyCore;
 
 import game.core.nettyCore.model.Message;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.http.FullHttpRequest;
+import game.core.nettyCore.session.Session;
 
 /**
  * @author nullzZ
  */
 public interface AbstractMessageLogicExecutorBase {
 
-    void execute(IHandler handler, ChannelHandlerContext ctx, Message msg);
+
+    void execute(IHandler handler, Session session, Message msg);
 
 }

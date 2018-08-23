@@ -18,6 +18,7 @@ package game.core.nettyCore.serverDef;
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
 import game.core.nettyCore.IExecutorCallBack;
+import game.core.nettyCore.IHandlerListener;
 import game.core.nettyCore.coder.ProtocolType;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
@@ -37,6 +38,7 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
     protected AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
     protected HandlerManager handlerManager;
     protected String hanlderPackageName;
+    protected IHandlerListener listener;
     protected IExecutorCallBack executorCallBack;
     protected boolean isSpring;
 
@@ -135,6 +137,11 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
         return (T) this;
     }
 
+    public T handlerListener(IHandlerListener listener) {
+        this.listener = listener;
+        return (T) this;
+    }
+
 
     public ServerDef build() throws Exception {
         try {
@@ -146,7 +153,7 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
 
             return new ServerDef(name, serverPort, maxFrameSize, maxConnections, clientIdleTimeout,
                     messageLogicExecutor, protocolType,
-                    handlerManager, executorCallBack);
+                    handlerManager, listener, executorCallBack);
         } catch (Exception e) {
             throw e;
         }

@@ -3,6 +3,7 @@ package game.core.nettyCore.client;
 import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.session.Session;
 import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,14 +25,14 @@ public class ClientMessageLogicExecutorBase implements AbstractMessageLogicExecu
     }
 
     @Override
-    public void execute(IHandler handler, ChannelHandlerContext ctx, Message msg) {
+    public void execute(IHandler handler, Session session, Message msg) {
         es.execute(new Runnable() {
 
             @SuppressWarnings("unchecked")
             @Override
             public void run() {
                 try {
-                    handler.execute(ctx, msg.getContent());
+                    handler.execute(session, msg.getContent());
                 } catch (Throwable e) {
                     logger.error("logic 异常-", e);
                 }

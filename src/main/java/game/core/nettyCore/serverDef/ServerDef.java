@@ -15,9 +15,7 @@
  */
 package game.core.nettyCore.serverDef;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
-import game.core.nettyCore.HandlerManager;
-import game.core.nettyCore.IExecutorCallBack;
+import game.core.nettyCore.*;
 import game.core.nettyCore.coder.ProtocolType;
 import game.core.nettyCore.proto.IProtocolFactorySelector;
 
@@ -36,11 +34,13 @@ public class ServerDef {
     public final int maxConnections;
     public final long clientIdleTimeout;
     public final IExecutorCallBack executorCallBack;
+    public final IHandlerListener listener;
 
     public ServerDef(String name, int port, int maxFrameSize, int maxConnections,
                      long clientIdleTimeout,
                      AbstractMessageLogicExecutorBase messageLogicExecutor,
                      ProtocolType protocolType, HandlerManager handlerManager,
+                     IHandlerListener listener,
                      IExecutorCallBack executorCallBack) {
         this.name = name;
         this.port = port;
@@ -50,6 +50,7 @@ public class ServerDef {
         this.maxFrameSize = maxFrameSize;
         this.maxConnections = maxConnections;
         this.clientIdleTimeout = clientIdleTimeout;
+        this.listener = listener;
         this.executorCallBack = executorCallBack;
     }
 
