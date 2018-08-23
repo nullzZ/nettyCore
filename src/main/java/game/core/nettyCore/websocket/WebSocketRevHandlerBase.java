@@ -31,13 +31,13 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
     private static final String WEBSOCKET_PATH = "/websocket";
 //    private final ServerDef serverDef;
 
-    private final AbstractMessageLogicExecutorBase messageLogicExecutor;
+    private final IMessageLogicExecutorBase messageLogicExecutor;
 
     public IHandlerListener listener;
     private final HandlerManager handlerManager;
     private final ProtocolType protocolType;
 
-    public WebSocketRevHandlerBase(AbstractMessageLogicExecutorBase messageLogicExecutor,
+    public WebSocketRevHandlerBase(IMessageLogicExecutorBase messageLogicExecutor,
                                    HandlerManager handlerManager,
                                    ProtocolType protocolType, IHandlerListener listener) {
         this.messageLogicExecutor = messageLogicExecutor;

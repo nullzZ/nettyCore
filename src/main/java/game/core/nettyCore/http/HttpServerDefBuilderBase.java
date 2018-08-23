@@ -1,6 +1,5 @@
 package game.core.nettyCore.http;
 
-import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.coder.ProtocolType;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,7 +19,7 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
     private AbstractHttpMessageLogicExecutorBase messageLogicExecutor;// hasDefault
     private HttpHandlerManager handlerManager;
     private String hanlderPackageName;
-    private IExecutorCallBack executorCallBack;
+
 
     // private HttpResourceHandler httpResourceHandler;// hasDefault
     // private HttpHandlerFactory httpHandlerFactory;// hasDefault
@@ -80,11 +79,6 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
         return (T) this;
     }
 
-    public T executorCallBack(IExecutorCallBack executorCallBack) {
-        this.executorCallBack = executorCallBack;
-        return (T) this;
-    }
-
 
     public HttpServerDef build() {
         checkState(hanlderPackageName != null, "hanlderPackageName not defined!");
@@ -101,7 +95,7 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
 //        }
 
         if (messageLogicExecutor == null) {
-            this.messageLogicExecutor = new HttpMessageLogicExecutorBase(executorCallBack);
+            // this.messageLogicExecutor = new HttpMessageLogicExecutorBase(executorCallBack);
         } else {
             this.messageLogicExecutor = messageLogicExecutor;
         }
@@ -114,7 +108,7 @@ public abstract class HttpServerDefBuilderBase<T extends HttpServerDefBuilderBas
         }
 
         return new HttpServerDef(name, serverPort, maxFrameSize, maxConnections, clientIdleTimeout,
-                messageLogicExecutor, handlerManager, executorCallBack);
+                messageLogicExecutor, handlerManager);
     }
 
     /**

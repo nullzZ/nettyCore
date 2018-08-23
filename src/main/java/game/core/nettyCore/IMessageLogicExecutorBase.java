@@ -6,7 +6,7 @@ import game.core.nettyCore.session.Session;
 /**
  * @author nullzZ
  */
-public interface AbstractMessageLogicExecutorBase {
+public interface IMessageLogicExecutorBase {
 
 
     void execute(IHandler handler, Session session, Message msg);

@@ -1,10 +1,9 @@
 package game.core.nettyCore.client;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.model.Message;
 import game.core.nettyCore.session.Session;
-import io.netty.channel.ChannelHandlerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +13,7 @@ import java.util.concurrent.Executors;
 /**
  * @author nullzZ
  */
-public class ClientMessageLogicExecutorBase implements AbstractMessageLogicExecutorBase {
+public class ClientMessageLogicExecutorBase implements IMessageLogicExecutorBase {
 
     private static final Logger logger = LoggerFactory.getLogger(ClientMessageLogicExecutorBase.class);
     private ExecutorService es = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);

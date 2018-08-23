@@ -1,6 +1,6 @@
 package game.core.nettyCore.client;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.model.Message;
 import game.core.nettyCore.session.Session;
@@ -19,7 +19,7 @@ public class ClientMessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(ClientMessageRecvHandlerBase.class);
     private ClientDef clientDef;
-    private AbstractMessageLogicExecutorBase messageLogicExecutor;
+    private IMessageLogicExecutorBase messageLogicExecutor;
 
     public ClientMessageRecvHandlerBase(ClientDef clientDef) {
         this.clientDef = clientDef;

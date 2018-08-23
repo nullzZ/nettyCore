@@ -1,6 +1,6 @@
 package game.core.nettyCore.client;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
 import game.core.nettyCore.coder.ProtocolType;
 import io.netty.channel.ChannelInitializer;
@@ -20,7 +20,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
 
     // hasDefault
     private ProtocolType protocolType;
-    private AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
+    private IMessageLogicExecutorBase messageLogicExecutor;// hasDefault
     private HandlerManager handlerManager;
     private String hanlderPackageName;
     private boolean isSpring;
@@ -68,7 +68,7 @@ public abstract class ClientDefBuilderBase<T extends ClientDefBuilderBase<T>> {
 
 
     @SuppressWarnings("unchecked")
-    public T messageLogicExecutor(AbstractMessageLogicExecutorBase messageLogicExecutor) {
+    public T messageLogicExecutor(IMessageLogicExecutorBase messageLogicExecutor) {
         this.messageLogicExecutor = messageLogicExecutor;
         return (T) this;
     }

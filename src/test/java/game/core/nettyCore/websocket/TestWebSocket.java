@@ -12,7 +12,7 @@ public class TestWebSocket {
              //PropertyConfigurator.configure("/Users/malei/nettyCore/src/test/resources/log4j.xml");
             //PropertyConfigurator.configure("D:\\nettyCore\\src\\test\\resources\\log4j.xml");
             ServerDef serverDef = ServerDef.newBuilder().handlerPackage("game.core.nettyCore.test")
-                    .protocolType(ProtocolType.JPROTOBUFF).build();
+                    .protocolType(ProtocolType.JPROTOBUFF).messageLogicExecutor(new LogicExecutor()).build();
             WebSocketServerBootstrap bootstrap = new WebSocketServerBootstrap(serverDef);
             bootstrap.start();
         } catch (Exception e) {

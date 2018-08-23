@@ -15,7 +15,6 @@
  */
 package game.core.nettyCore.http;
 
-import game.core.nettyCore.*;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 
@@ -28,11 +27,11 @@ public class HttpServerDef {
     public final int maxFrameSize;
     public final int maxConnections;
     public final long clientIdleTimeout;
-    public final IExecutorCallBack executorCallBack;
+
 
     public HttpServerDef(String name, int port, int maxFrameSize, int maxConnections, long clientIdleTimeout,
                          AbstractHttpMessageLogicExecutorBase messageLogicExecutor,
-                         HttpHandlerManager handlerManager, IExecutorCallBack executorCallBack) {
+                         HttpHandlerManager handlerManager) {
         this.name = name;
         this.port = port;
 
@@ -43,7 +42,7 @@ public class HttpServerDef {
         this.maxFrameSize = maxFrameSize;
         this.maxConnections = maxConnections;
         this.clientIdleTimeout = clientIdleTimeout;
-        this.executorCallBack = executorCallBack;
+
     }
 
     public static HttpServerDefBuilder newBuilder() {

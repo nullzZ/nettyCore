@@ -15,7 +15,7 @@
  */
 package game.core.nettyCore.client;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
 import game.core.nettyCore.coder.ProtocolType;
 import io.netty.channel.ChannelInitializer;
@@ -29,7 +29,7 @@ public class ClientDef {
     public final ChannelInitializer<SocketChannel> channelInitializer;
     public final long clientIdleTimeout;
     public final ProtocolType protocolType;
-    public final AbstractMessageLogicExecutorBase messageLogicExecutor;// logic
+    public final IMessageLogicExecutorBase messageLogicExecutor;// logic
     public final HandlerManager handlerManager;
     public ClientListener listener;
     /**
@@ -39,7 +39,7 @@ public class ClientDef {
 
     public ClientDef(String name, String host, int port, int maxFrameSize,
                      ChannelInitializer<SocketChannel> channelInitializer, long clientIdleTimeout,
-                     AbstractMessageLogicExecutorBase messageLogicExecutor,
+                     IMessageLogicExecutorBase messageLogicExecutor,
                      ProtocolType protocolType, HandlerManager handlerManager, boolean isSendHeart) {
         this.name = name;
         this.host = host;
