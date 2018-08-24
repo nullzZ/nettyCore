@@ -11,8 +11,8 @@ public class PBGenerateUtil {
     public static void main(String[] args) {
 //        InputStream fis = PBGenerateUtil.class.getResourceAsStream("test.proto");
         try {
-            InputStream fis = new FileInputStream("D:\\nettyCore\\src\\test\\resources\\test.proto");
-            ProtobufIDLProxy.generateSource(fis, new File("D:\\test"));
+            InputStream fis = new FileInputStream("/Users/malei/nettyCore/src/test/resources/test.proto");
+            ProtobufIDLProxy.generateSource(fis, new File("/Users/malei/文档"));
         } catch (IOException e) {
             e.printStackTrace();
         }
