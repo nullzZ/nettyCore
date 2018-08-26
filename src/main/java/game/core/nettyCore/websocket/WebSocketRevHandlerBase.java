@@ -36,6 +36,7 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
     public IHandlerListener listener;
     private final HandlerManager handlerManager;
     private final ProtocolType protocolType;
+    private final ServerType serverType = ServerType.WEBSOCKET;
 
     public WebSocketRevHandlerBase(IMessageLogicExecutorBase messageLogicExecutor,
                                    HandlerManager handlerManager,
@@ -58,8 +59,8 @@ public class WebSocketRevHandlerBase extends SimpleChannelInboundHandler<Object>
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
-        Session session = new Session(ctx);
-        SessionManager.put(ctx, session);
+//        Session session = new Session(ctx);
+        Session session = SessionManager.create(ctx, serverType, protocolType);
         if (listener != null) {
             listener.onConnect(session);
 

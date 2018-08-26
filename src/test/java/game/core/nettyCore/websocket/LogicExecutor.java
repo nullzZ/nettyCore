@@ -21,7 +21,7 @@ public class LogicExecutor implements IMessageLogicExecutorBase {
 
             Object r = handler.execute(session, msg.getContent());
             if (r != null && !(r instanceof Void)) {
-                WebSocketMessageUtil.sendByJPB(session.getCtx(), cmd, r);
+                //WebSocketMessageUtil.sendByJPB(session.getCtx(), cmd, r);
             }
 
             long time = System.currentTimeMillis() - now;

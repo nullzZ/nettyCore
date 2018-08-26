@@ -14,6 +14,7 @@
             websocket.onmessage = function (event) {
                 var respMessage = document.getElementById("respMessage");
                 respMessage.value = respMessage.value + "\n" + event.data;
+
             }
 
             //连接关闭的时候触发
@@ -32,11 +33,11 @@
         }
 
         function sendMsg(msg) { //发送消息
-            var con = "{'id':10001,'cmd':1000}";
+            var con = "{'token':10001}";
             var bf = new ArrayBuffer(2 + con.length * 2);
             var dv = new DataView(bf);
             var writePos = 0;
-            dv.setInt16(writePos, 10001);
+            dv.setInt16(writePos, 1001);
             writePos += 2;
             dv.setInt16(writePos, con.length);
             writePos += 2;
@@ -55,6 +56,27 @@
                 return;
             }
         }
+
+
+        function parseBlob(blob){
+            var shortVar, intVar, stringVar;
+            reader.readAs('ArrayBuffer',blob.slice(0,2),function(arr){
+                shortVar = (new Int16Array(arr))[0];
+                console.log(shortVar);
+            });
+            reader.readAs('ArrayBuffer',blob.slice(2,6),function(arr){
+                intVar = (new Int32Array(arr))[0];
+                console.log(intVar);
+            });
+            reader.readAs('Text',blob.slice(6,blob.size,'text/plain;charset=UTF-8'),function(result){
+                stringVar = result;
+                console.log(stringVar);
+            });
+        }
+
+
+
+
 
         function stringToByte(str) {
             var bytes = new Array();
