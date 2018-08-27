@@ -8,12 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="560fea24-f430-4f39-a5d6-63293d1e37cd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/SessionManager.java" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/SessionManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/WebSocketMessageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/WebSocketMessageUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/websocket/WebSocketRevHandlerBase.java" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/websocket/WebSocketRevHandlerBase.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/game/core/nettyCore/websocket/LogicExecutor.java" afterPath="$PROJECT_DIR$/src/test/java/game/core/nettyCore/websocket/LogicExecutor.java" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/game/core/nettyCore/websocket/client.html" afterPath="$PROJECT_DIR$/src/test/java/game/core/nettyCore/websocket/client.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WebSocketRevHandlerBase.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WebSocketRevHandlerBase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/websocket/WebSocketRevHandlerBase.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="169">
-              <caret line="104" column="25" lean-forward="true" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+              <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -69,11 +63,55 @@
       <file leaf-file-name="Session.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="-366">
               <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Session.class" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1535335658000" expanded="true" signature="0:104" ph="/.../" />
+                <marker date="1535335658000" expanded="false" signature="151:330" ph="..." />
+                <marker date="1535335658000" expanded="true" signature="606:767" ph="{...}" />
+                <marker date="1535335658000" expanded="false" signature="810:821" ph=" { " />
+                <marker date="1535335658000" expanded="false" signature="837:843" ph=" }" />
+                <marker date="1535335658000" expanded="false" signature="894:905" ph=" { " />
+                <marker date="1535335658000" expanded="false" signature="920:926" ph=" }" />
+                <marker date="1535335658000" expanded="false" signature="970:981" ph=" { " />
+                <marker date="1535335658000" expanded="false" signature="1010:1016" ph=" }" />
+                <marker date="1535335658000" expanded="false" signature="1081:1092" ph=" { " />
+                <marker date="1535335658000" expanded="false" signature="1133:1139" ph=" }" />
+                <marker date="1535335658000" expanded="true" signature="1247:1314" ph="{...}" />
+                <marker date="1535335658000" expanded="true" signature="1433:1614" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Session.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,36 +132,6 @@
             <state relative-caret-position="36">
               <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProtobufProxy.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/baidu/jprotobuf/2.2.4/jprotobuf-2.2.4.jar!/com/baidu/bjf/remoting/protobuf/ProtobufProxy.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1908">
-              <caret line="128" column="34" lean-forward="false" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
-              <folding>
-                <marker date="1534336557948" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1534336557948" expanded="false" signature="155:776" ph="..." />
-                <marker date="1534336557948" expanded="true" signature="1247:1254" ph="{}" />
-                <marker date="1534336557948" expanded="false" signature="1307:1318" ph=" { " />
-                <marker date="1534336557948" expanded="false" signature="1345:1351" ph=" }" />
-                <marker date="1534336557948" expanded="true" signature="1396:1490" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="1599:2073" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="2136:2652" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="2706:2884" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="2987:3190" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="3254:3524" ph="{...}" />
-                <marker date="1534336557948" expanded="false" signature="3592:3603" ph=" { " />
-                <marker date="1534336557948" expanded="false" signature="3641:3647" ph=" }" />
-                <marker date="1534336557948" expanded="true" signature="3727:3814" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="3943:4244" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="4294:4425" ph="{...}" />
-                <marker date="1534336557948" expanded="true" signature="4537:8543" ph="{...}" />
-                <marker date="1534336557948" expanded="false" signature="8580:8591" ph=" { " />
-                <marker date="1534336557948" expanded="false" signature="8606:8612" ph=" }" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -391,6 +399,51 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nettycore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nettycore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nettycore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nettycore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nettycore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nettycore" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="nettyCore" type="462c0819:PsiDirectoryNode" />
+              <item name="session" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -691,12 +744,12 @@
       <workItem from="1535091822402" duration="7651000" />
       <workItem from="1535122433184" duration="29000" />
       <workItem from="1535171184990" duration="1239000" />
-      <workItem from="1535289579781" duration="1638000" />
+      <workItem from="1535289579781" duration="2863000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313171000" />
+    <option name="totallyTimeSpent" value="314396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1440" height="800" extended-state="0" />
@@ -709,7 +762,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.50572246" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.4926004" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297568" sideWeight="0.4926004" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32907802" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -801,8 +854,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/ChannelContextManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/WebSocketSession.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/INoResultHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -992,14 +1043,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1206">
-          <caret line="67" column="36" lean-forward="false" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/test.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -1115,16 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/SessionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1152,7 +1185,55 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/websocket/WebSocketRevHandlerBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
-          <caret line="104" column="25" lean-forward="true" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+          <caret line="104" column="25" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-366">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1535335658000" expanded="true" signature="0:104" ph="/.../" />
+            <marker date="1535335658000" expanded="false" signature="151:330" ph="..." />
+            <marker date="1535335658000" expanded="true" signature="606:767" ph="{...}" />
+            <marker date="1535335658000" expanded="false" signature="810:821" ph=" { " />
+            <marker date="1535335658000" expanded="false" signature="837:843" ph=" }" />
+            <marker date="1535335658000" expanded="false" signature="894:905" ph=" { " />
+            <marker date="1535335658000" expanded="false" signature="920:926" ph=" }" />
+            <marker date="1535335658000" expanded="false" signature="970:981" ph=" { " />
+            <marker date="1535335658000" expanded="false" signature="1010:1016" ph=" }" />
+            <marker date="1535335658000" expanded="false" signature="1081:1092" ph=" { " />
+            <marker date="1535335658000" expanded="false" signature="1133:1139" ph=" }" />
+            <marker date="1535335658000" expanded="true" signature="1247:1314" ph="{...}" />
+            <marker date="1535335658000" expanded="true" signature="1433:1614" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
