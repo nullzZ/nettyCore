@@ -1,6 +1,5 @@
 package game.core.nettyCore.http;
 
-import game.core.nettyCore.IExecutorCallBack;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.FullHttpRequest;
@@ -26,20 +25,20 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
             return new Thread(r, "HttpLogicExecutor" + id.getAndAdd(1));
         }
     });
-    public IExecutorCallBack executorCallBack;
 
-    public HttpMessageLogicExecutorBase(IExecutorCallBack executorCallBack) {
-        this.executorCallBack = executorCallBack;
-    }
+
+//    public HttpMessageLogicExecutorBase(IExecutorCallBack executorCallBack) {
+//        this.executorCallBack = executorCallBack;
+//    }
 
     @Override
     public void execute(IHttpHandler handler, ChannelHandlerContext ctx, FullHttpRequest req, int cmd, String token, HttpRequest msg) {
         es.execute(() -> {
                     try {
                         long now = System.currentTimeMillis();
-                        if (executorCallBack != null) {
-                            executorCallBack.onHandleBefor(ctx, msg);
-                        }
+//                        if (executorCallBack != null) {
+//                            executorCallBack.onHandleBefor(ctx, msg);
+//                        }
                         Object r = handler.execute(token, msg);
                         if (r == null || r instanceof Void) {
 
@@ -51,9 +50,9 @@ public class HttpMessageLogicExecutorBase implements AbstractHttpMessageLogicExe
                             res.setData(r);
                             MessageUtil.sendHttpResponse(ctx, req, res);
                         }
-                        if (executorCallBack != null) {
-                            executorCallBack.onHandleAfer(ctx, msg);
-                        }
+//                        if (executorCallBack != null) {
+//                            executorCallBack.onHandleAfer(ctx, msg);
+//                        }
                         long time = System.currentTimeMillis() - now;
                         if (time > 300) {
                             logger.error("[业务逻辑处理时间] handler:" + cmd + "|time:" + time);

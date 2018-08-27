@@ -30,19 +30,16 @@ public class WebSocketServerBootstrap extends WebSocketCommonServer implements I
 
     @Override
     public void start() throws Exception {
-        this.start(0, 0);
-    }
-
-    @Override
-    public void start(int bossThreads, int workThreads) throws Exception {
-        if (serverDef.messageLogicExecutor != null) {
-            super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef.messageLogicExecutor,
-                    serverDef.handlerManager, serverDef.protocolType));
-        } else {
-            super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef.handlerManager,
-                            serverDef.protocolType, serverDef.executorCallBack),
-                    bossThreads, workThreads);
-        }
+//        if (serverDef.messageLogicExecutor != null) {
+//            super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef.messageLogicExecutor,
+//                    serverDef.handlerManager, serverDef.protocolType, serverDef.listener));
+//        } else {
+        super.start(serverDef.port, new DefaultWebSocketChannelInstaller(serverDef.messageLogicExecutor,
+                        serverDef.handlerManager,
+                        serverDef.protocolType,
+                        serverDef.listener),
+                serverDef.bossThreads, serverDef.workThreads);
+//        }
     }
 
 }

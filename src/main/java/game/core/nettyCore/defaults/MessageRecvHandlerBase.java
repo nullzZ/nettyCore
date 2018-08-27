@@ -1,9 +1,11 @@
 package game.core.nettyCore.defaults;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
-import game.core.nettyCore.serverDef.ServerDef;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.model.Message;
+import game.core.nettyCore.serverDef.ServerDef;
+import game.core.nettyCore.session.Session;
+import game.core.nettyCore.session.SessionManager;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -18,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 public class MessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
 
     private static final Log logger = LogFactory.getLog(MessageRecvHandlerBase.class);
-    private final AbstractMessageLogicExecutorBase messageLogicExecutor;
+    private final IMessageLogicExecutorBase messageLogicExecutor;
     private final ServerDef serverDef;
 
     public MessageRecvHandlerBase(ServerDef serverDef) {
@@ -28,9 +30,9 @@ public class MessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        if (serverDef.executorCallBack != null) {
-            serverDef.executorCallBack.onConnect(ctx);
-        }
+//        if (serverDef.executorCallBack != null) {
+//            serverDef.executorCallBack.onConnect(ctx);
+//        }
         ctx.fireChannelActive();
     }
 
@@ -43,7 +45,8 @@ public class MessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
         }
         IHandler handler = serverDef.handlerManager.getHandler(mes.getCmd());
         if (handler != null) {
-            messageLogicExecutor.execute(handler, ctx, mes);
+            Session session = SessionManager.get(ctx);
+            messageLogicExecutor.execute(handler, session, mes);
         } else {
             logger.error("logic 异常-handler is null|cmd=" + mes.getCmd());
         }
@@ -57,9 +60,9 @@ public class MessageRecvHandlerBase extends ChannelInboundHandlerAdapter {
 
     private void close(ChannelHandlerContext ctx) {
         ctx.close();
-        if (serverDef.executorCallBack != null) {
-            serverDef.executorCallBack.onClose(ctx);
-        }
+//        if (serverDef.executorCallBack != null) {
+//            serverDef.executorCallBack.onClose(ctx);
+//        }
         logger.debug("客户端断开连接！！");
     }
 

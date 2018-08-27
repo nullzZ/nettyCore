@@ -10,31 +10,31 @@ import game.core.nettyCore.serverDef.ServerDef;
 public class TestServer {
 
     public static void main(String[] args) {
-        // 启动 Server
-        try {
-            //PropertyConfigurator.configure("E:\\nettyCore\\src\\test\\resources\\log4j.xml");
-            int port = 9090;
-            ServerDef serverDef = ServerDef.newBuilder().listen(port).protocolType(ProtocolType.JSON)
-                    .handlerPackage("game.core.nettyCore.test").clientIdleTimeout(10).build();
-
-
-//            HttpServerDef serverDef = HttpServerDef.newWebSocketBuilder().listen(port)
-//                    .handlerPackage("game.core.nettyCore.test").build();
-            @SuppressWarnings("resource")
-            ServerBootstrap server = new ServerBootstrap(serverDef);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        server.start();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        // 启动 Server
+//        try {
+//            //PropertyConfigurator.configure("E:\\nettyCore\\src\\test\\resources\\log4j.xml");
+//            int port = 9090;
+//            ServerDef serverDef = ServerDef.newBuilder().listen(port).protocolType(ProtocolType.JSON)
+//                    .handlerPackage("game.core.nettyCore.test").clientIdleTimeout(10).build();
+//
+//
+////            HttpServerDef serverDef = HttpServerDef.newWebSocketBuilder().listen(port)
+////                    .handlerPackage("game.core.nettyCore.test").build();
+//            @SuppressWarnings("resource")
+//            ServerBootstrap server = new ServerBootstrap(serverDef);
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        server.start();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }).start();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     // public static void main(String[] args) {

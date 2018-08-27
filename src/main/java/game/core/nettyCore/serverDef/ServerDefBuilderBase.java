@@ -15,9 +15,9 @@
  */
 package game.core.nettyCore.serverDef;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
-import game.core.nettyCore.IExecutorCallBack;
+import game.core.nettyCore.IHandlerListener;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.coder.ProtocolType;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
@@ -26,7 +26,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
     private static final AtomicInteger ID = new AtomicInteger(1);
-
+    protected int bossThreads;
+    protected int workThreads;
     protected String name = "netty-" + ID.getAndIncrement();
     protected int serverPort = 8081;
     protected ChannelInitializer<SocketChannel> channelInitializer;
@@ -34,10 +35,10 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
     protected int maxConnections;
     protected long clientIdleTimeout;// hasDefault
     protected ProtocolType protocolType;
-    protected AbstractMessageLogicExecutorBase messageLogicExecutor;// hasDefault
+    protected IMessageLogicExecutorBase messageLogicExecutor;// hasDefault
     protected HandlerManager handlerManager;
     protected String hanlderPackageName;
-    protected IExecutorCallBack executorCallBack;
+    protected IHandlerListener listener;
     protected boolean isSpring;
 
     // private HttpResourceHandler httpResourceHandler;// hasDefault
@@ -66,6 +67,16 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
         return (T) this;
     }
 
+    public T bossThreads(int num) {
+        this.bossThreads = num;
+        return (T) this;
+    }
+
+    public T workThreads(int num) {
+        this.workThreads = num;
+        return (T) this;
+    }
+
     /**
      * Listen to this port.
      */
@@ -77,7 +88,7 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
 
 
     @SuppressWarnings("unchecked")
-    public T messageLogicExecutor(AbstractMessageLogicExecutorBase messageLogicExecutor) {
+    public T messageLogicExecutor(IMessageLogicExecutorBase messageLogicExecutor) {
         this.messageLogicExecutor = messageLogicExecutor;
         return (T) this;
     }
@@ -130,8 +141,9 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
         return (T) this;
     }
 
-    public T executorCallBack(IExecutorCallBack executorCallBack) {
-        this.executorCallBack = executorCallBack;
+
+    public T handlerListener(IHandlerListener listener) {
+        this.listener = listener;
         return (T) this;
     }
 
@@ -142,11 +154,13 @@ public abstract class ServerDefBuilderBase<T extends ServerDefBuilderBase<T>> {
 
             checkState(protocolType != null, "potocolType not defined!");
 
+            checkState(messageLogicExecutor != null, "messageLogicExecutor not defined!");
+
             this.handlerManager.init(hanlderPackageName, isSpring);
 
-            return new ServerDef(name, serverPort, maxFrameSize, maxConnections, clientIdleTimeout,
+            return new ServerDef(bossThreads, workThreads, name, serverPort, maxFrameSize, maxConnections, clientIdleTimeout,
                     messageLogicExecutor, protocolType,
-                    handlerManager, executorCallBack);
+                    handlerManager, listener);
         } catch (Exception e) {
             throw e;
         }

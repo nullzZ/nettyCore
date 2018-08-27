@@ -2,8 +2,6 @@ package game.core.nettyCore.http;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import game.core.nettyCore.http.webSocket.SessionManager;
-import game.core.nettyCore.http.webSocket.WebSocketSession;
 import game.core.nettyCore.util.MessageUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -75,9 +73,9 @@ public class HttpRevHandlerBase extends SimpleChannelInboundHandler<Object> {
                 } else {
                     logger.debug("websocket握手成功！！！！！！！！！！");
                     handshaker.handshake(ctx.channel(), req);//把握手消息返回给客户端
-                    WebSocketSession session = new WebSocketSession();
-                    session.setCtx(ctx);
-                    SessionManager.put(ctx, session);
+                   // WebSocketSession session = new WebSocketSession();
+                    //session.setCtx(ctx);
+                    //SessionManager.put(ctx, session);
                 }
             } else {//正常http请求
                 if (req instanceof HttpRequest) {

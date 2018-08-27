@@ -1,8 +1,8 @@
 package game.core.nettyCore.websocket;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.HandlerManager;
-import game.core.nettyCore.IExecutorCallBack;
+import game.core.nettyCore.IHandlerListener;
 import game.core.nettyCore.coder.ProtocolType;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -13,23 +13,25 @@ import io.netty.handler.stream.ChunkedWriteHandler;
 
 public class DefaultWebSocketChannelInstaller extends ChannelInitializer<SocketChannel> {
 
-    private final AbstractMessageLogicExecutorBase messageLogicExecutor;
+    private final IMessageLogicExecutorBase messageLogicExecutor;
     private final HandlerManager handlerManager;
     private final ProtocolType protocolType;
+    private IHandlerListener listener;
 
-    public DefaultWebSocketChannelInstaller(HandlerManager handlerManager,
-                                            ProtocolType protocolType, IExecutorCallBack executorCallBack) {
-        this.messageLogicExecutor = new WebSocketLogicExecutorBase(protocolType, executorCallBack);
-        this.handlerManager = handlerManager;
-        this.protocolType = protocolType;
-    }
+//    public DefaultWebSocketChannelInstaller(HandlerManager handlerManager,
+//                                            ProtocolType protocolType, IExecutorCallBack executorCallBack) {
+//        this.messageLogicExecutor = new WebSocketLogicExecutorBase(protocolType, executorCallBack);
+//        this.handlerManager = handlerManager;
+//        this.protocolType = protocolType;
+//    }
 
-    public DefaultWebSocketChannelInstaller(AbstractMessageLogicExecutorBase messageLogicExecutor,
+    public DefaultWebSocketChannelInstaller(IMessageLogicExecutorBase messageLogicExecutor,
                                             HandlerManager handlerManager,
-                                            ProtocolType protocolType) {
+                                            ProtocolType protocolType, IHandlerListener listener) {
         this.messageLogicExecutor = messageLogicExecutor;
         this.handlerManager = handlerManager;
         this.protocolType = protocolType;
+        this.listener = listener;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class DefaultWebSocketChannelInstaller extends ChannelInitializer<SocketC
         pipeline.addLast("handler",
                 new WebSocketRevHandlerBase(messageLogicExecutor,
                         handlerManager,
-                        protocolType));
+                        protocolType, listener));
 
 
     }

@@ -11,15 +11,15 @@ import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 public class WebSocketMessageUtil {
     private static final short HEAD_LEN = 2;
 
-    public static <T> void sendByJPB(ChannelHandlerContext ctx, short cmd, T msg) throws Exception {
-        sendByProtocolType(ctx, cmd, msg, ProtocolType.JPROTOBUFF);
-    }
+//    public static <T> void sendByJPB(ChannelHandlerContext ctx, short cmd, T msg) throws Exception {
+//        sendByProtocolType(ctx, cmd, msg, ProtocolType.JPROTOBUFF);
+//    }
+//
+//    public static <T> void sendByJPB(ChannelHandlerContext ctx, short cmd) throws Exception {
+//        sendByProtocolType(ctx, cmd, null, ProtocolType.JPROTOBUFF);
+//    }
 
-    public static <T> void sendByJPB(ChannelHandlerContext ctx, short cmd) throws Exception {
-        sendByProtocolType(ctx, cmd, null, ProtocolType.JPROTOBUFF);
-    }
-
-    public static <T> void sendByProtocolType(ChannelHandlerContext ctx, short cmd, ProtocolType protocolType) throws Exception {
+    public static void sendByProtocolType(ChannelHandlerContext ctx, short cmd, ProtocolType protocolType) throws Exception {
         sendByProtocolType(ctx, cmd, null, protocolType);
     }
 

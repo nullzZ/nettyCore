@@ -1,9 +1,9 @@
 package game.core.nettyCore.client;
 
-import game.core.nettyCore.AbstractMessageLogicExecutorBase;
+import game.core.nettyCore.IMessageLogicExecutorBase;
 import game.core.nettyCore.IHandler;
 import game.core.nettyCore.model.Message;
-import io.netty.channel.ChannelHandlerContext;
+import game.core.nettyCore.session.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 /**
  * @author nullzZ
  */
-public class ClientMessageLogicExecutorBase implements AbstractMessageLogicExecutorBase {
+public class ClientMessageLogicExecutorBase implements IMessageLogicExecutorBase {
 
     private static final Logger logger = LoggerFactory.getLogger(ClientMessageLogicExecutorBase.class);
     private ExecutorService es = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 2);
@@ -24,14 +24,14 @@ public class ClientMessageLogicExecutorBase implements AbstractMessageLogicExecu
     }
 
     @Override
-    public void execute(IHandler handler, ChannelHandlerContext ctx, Message msg) {
+    public void execute(IHandler handler, Session session, Message msg) {
         es.execute(new Runnable() {
 
             @SuppressWarnings("unchecked")
             @Override
             public void run() {
                 try {
-                    handler.execute(ctx, msg.getContent());
+                    handler.execute(session, msg.getContent());
                 } catch (Throwable e) {
                     logger.error("logic 异常-", e);
                 }
