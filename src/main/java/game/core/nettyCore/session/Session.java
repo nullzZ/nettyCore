@@ -36,11 +36,11 @@ public class Session {
         this.sessionAttribute = sessionAttribute;
     }
 
-    public void sendMsg(ChannelHandlerContext ctx, short cmd, ProtocolType protocolType) throws Exception {
-        sendMsg(ctx, cmd, null, protocolType);
+    public void sendMsg(ChannelHandlerContext ctx, short cmd) throws Exception {
+        sendMsg(ctx, cmd, null);
     }
 
-    public <T> void sendMsg(ChannelHandlerContext ctx, short cmd, T msg, ProtocolType protocolType) throws Exception {
+    public <T> void sendMsg(ChannelHandlerContext ctx, short cmd, T msg) throws Exception {
         if (type == ServerType.HTTP) {
 
         } else if (type == ServerType.WEBSOCKET) {

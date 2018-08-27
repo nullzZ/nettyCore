@@ -7,7 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="560fea24-f430-4f39-a5d6-63293d1e37cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java" afterPath="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Session.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Session.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-366">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="95">
+              <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,30 +78,31 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1535335658000" expanded="true" signature="0:104" ph="/.../" />
-                <marker date="1535335658000" expanded="false" signature="151:330" ph="..." />
-                <marker date="1535335658000" expanded="true" signature="606:767" ph="{...}" />
-                <marker date="1535335658000" expanded="false" signature="810:821" ph=" { " />
-                <marker date="1535335658000" expanded="false" signature="837:843" ph=" }" />
-                <marker date="1535335658000" expanded="false" signature="894:905" ph=" { " />
-                <marker date="1535335658000" expanded="false" signature="920:926" ph=" }" />
-                <marker date="1535335658000" expanded="false" signature="970:981" ph=" { " />
-                <marker date="1535335658000" expanded="false" signature="1010:1016" ph=" }" />
-                <marker date="1535335658000" expanded="false" signature="1081:1092" ph=" { " />
-                <marker date="1535335658000" expanded="false" signature="1133:1139" ph=" }" />
-                <marker date="1535335658000" expanded="true" signature="1247:1314" ph="{...}" />
-                <marker date="1535335658000" expanded="true" signature="1433:1614" ph="{...}" />
+                <marker date="1535336796000" expanded="true" signature="0:104" ph="/.../" />
+                <marker date="1535336796000" expanded="false" signature="151:330" ph="..." />
+                <marker date="1535336796000" expanded="true" signature="606:767" ph="{...}" />
+                <marker date="1535336796000" expanded="false" signature="810:821" ph=" { " />
+                <marker date="1535336796000" expanded="false" signature="837:843" ph=" }" />
+                <marker date="1535336796000" expanded="false" signature="894:905" ph=" { " />
+                <marker date="1535336796000" expanded="false" signature="920:926" ph=" }" />
+                <marker date="1535336796000" expanded="false" signature="970:981" ph=" { " />
+                <marker date="1535336796000" expanded="false" signature="1010:1016" ph=" }" />
+                <marker date="1535336796000" expanded="false" signature="1081:1092" ph=" { " />
+                <marker date="1535336796000" expanded="false" signature="1133:1139" ph=" }" />
+                <marker date="1535336796000" expanded="true" signature="1520:1551" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Session.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Session.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <marker date="1535336795000" expanded="true" signature="1309:1518" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -228,10 +229,10 @@
         <option value="$PROJECT_DIR$/src/test/java/game/core/nettyCore/websocket/client.html" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/WebSocketMessageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/util/WebSocketMessageUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/SessionManager.java" />
         <option value="$PROJECT_DIR$/src/test/java/game/core/nettyCore/websocket/LogicExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/websocket/WebSocketRevHandlerBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java" />
       </list>
     </option>
   </component>
@@ -744,12 +745,12 @@
       <workItem from="1535091822402" duration="7651000" />
       <workItem from="1535122433184" duration="29000" />
       <workItem from="1535171184990" duration="1239000" />
-      <workItem from="1535289579781" duration="2863000" />
+      <workItem from="1535289579781" duration="3158000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="314396000" />
+    <option name="totallyTimeSpent" value="314691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1440" height="800" extended-state="0" />
@@ -763,7 +764,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.50572246" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3297568" sideWeight="0.4926004" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32907802" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32907802" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1198,34 +1199,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1535335658000" expanded="true" signature="0:104" ph="/.../" />
-            <marker date="1535335658000" expanded="false" signature="151:330" ph="..." />
-            <marker date="1535335658000" expanded="true" signature="606:767" ph="{...}" />
-            <marker date="1535335658000" expanded="false" signature="810:821" ph=" { " />
-            <marker date="1535335658000" expanded="false" signature="837:843" ph=" }" />
-            <marker date="1535335658000" expanded="false" signature="894:905" ph=" { " />
-            <marker date="1535335658000" expanded="false" signature="920:926" ph=" }" />
-            <marker date="1535335658000" expanded="false" signature="970:981" ph=" { " />
-            <marker date="1535335658000" expanded="false" signature="1010:1016" ph=" }" />
-            <marker date="1535335658000" expanded="false" signature="1081:1092" ph=" { " />
-            <marker date="1535335658000" expanded="false" signature="1133:1139" ph=" }" />
-            <marker date="1535335658000" expanded="true" signature="1247:1314" ph="{...}" />
-            <marker date="1535335658000" expanded="true" signature="1433:1614" ph="{...}" />
+            <marker date="1535336796000" expanded="true" signature="0:104" ph="/.../" />
+            <marker date="1535336796000" expanded="false" signature="151:330" ph="..." />
+            <marker date="1535336796000" expanded="true" signature="606:767" ph="{...}" />
+            <marker date="1535336796000" expanded="false" signature="810:821" ph=" { " />
+            <marker date="1535336796000" expanded="false" signature="837:843" ph=" }" />
+            <marker date="1535336796000" expanded="false" signature="894:905" ph=" { " />
+            <marker date="1535336796000" expanded="false" signature="920:926" ph=" }" />
+            <marker date="1535336796000" expanded="false" signature="970:981" ph=" { " />
+            <marker date="1535336796000" expanded="false" signature="1010:1016" ph=" }" />
+            <marker date="1535336796000" expanded="false" signature="1081:1092" ph=" { " />
+            <marker date="1535336796000" expanded="false" signature="1133:1139" ph=" }" />
+            <marker date="1535336796000" expanded="true" signature="1520:1551" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1233,8 +1223,20 @@
     <entry file="file://$PROJECT_DIR$/target/classes/game/core/nettyCore/session/Session.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <marker date="1535336795000" expanded="true" signature="1309:1518" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/game/core/nettyCore/session/Session.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="39" column="30" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
