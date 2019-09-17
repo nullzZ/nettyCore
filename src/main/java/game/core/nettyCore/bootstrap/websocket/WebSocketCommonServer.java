@@ -44,7 +44,8 @@ public class WebSocketCommonServer implements java.io.Closeable, ICommonServer {
             workerGroup = new NioEventLoopGroup(workerThreadSize, r -> {
                 return new Thread(r, "netty_worker");
             });
-            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(channelInitializer);
+            b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+                    .childHandler(channelInitializer);
 //            .option(ChannelOption.SO_BACKLOG, 128).option(ChannelOption.TCP_NODELAY, true)
 //                    .option(ChannelOption.SO_KEEPALIVE, true).option(ChannelOption.SO_REUSEADDR, true)
 

@@ -31,7 +31,7 @@ public class HandlerManager {
                 Object obj = c.newInstance();
                 handlers.put(ann.id(), (IHandler) obj);
                 handlersName.put(ann.id(), toLowerCaseFirstOne(obj.getClass().getSimpleName()));
-                logger.debug("加载handler:--" + c.getName());
+                logger.info("加载handler:--" + c.getName());
                 for (Type type : c.getGenericInterfaces()) {
                     if (type instanceof ParameterizedType) {
                         Type[] actualTypeArguments = ((ParameterizedType) type).getActualTypeArguments();

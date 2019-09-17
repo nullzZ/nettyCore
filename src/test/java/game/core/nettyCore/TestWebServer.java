@@ -14,18 +14,17 @@ public class TestWebServer {
         try {
             //PropertyConfigurator.configure("E:\\nettyCore\\src\\test\\resources\\log4j.xml");
             int port = 9090;
+//            ServerDef serverDef = ServerDef.newBuilder().listen(port).protocolType(ProtocolType.JPROTOBUFF)
+//                    .handlerPackage("game.core.nettyCore.test").build();
             ServerDef serverDef = ServerDef.newBuilder().listen(port).protocolType(ProtocolType.JPROTOBUFF)
                     .handlerPackage("game.core.nettyCore.test").build();
             @SuppressWarnings("resource")
             ServerBootstrap server = new ServerBootstrap(serverDef);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        server.start();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+            new Thread(() -> {
+                try {
+                    server.start();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }).start();
         } catch (Exception e) {

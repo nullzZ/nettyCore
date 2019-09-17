@@ -34,7 +34,7 @@ public class ConnectionLimiterHandler extends ChannelInboundHandlerAdapter {
             log.error("[服务器连接上限][当前：" + curr + "|" + maxConnections + "]");
             ctx.close();
         }
-        log.debug("[当前连接数][" + curr + "]");
+        log.info("[当前连接数][" + curr + "]");
         ctx.fireChannelActive();
     }
 
@@ -49,7 +49,7 @@ public class ConnectionLimiterHandler extends ChannelInboundHandlerAdapter {
         if (maxConnections > 0 && curr < 0) {
             log.error("BUG in ConnectionLimiter");
         }
-        log.debug("[当前连接数][" + curr + "]");
+        log.info("[当前连接数][" + curr + "]");
     }
 
 }

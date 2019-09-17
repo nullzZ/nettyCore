@@ -90,7 +90,7 @@ public class ClassUtil {
 	/**
 	 * 从包package中获取所有的Class
 	 * 
-	 * @param pack
+	 * @param packageName
 	 * @return
 	 */
 	public static List<Class<?>> getClasses(String packageName) {
